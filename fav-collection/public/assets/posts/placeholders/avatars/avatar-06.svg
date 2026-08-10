@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Avatar 06</title>
+  <desc id="desc">イニシャルと幾何学形で構成した架空作者アイコン</desc>
+  <rect width="256" height="256" rx="40" fill="#1e2c21"/>
+  <circle cx="128" cy="128" r="92" fill="none" stroke="#86a96a" stroke-width="14" stroke-dasharray="47 19" transform="rotate(85 128 128)"/>
+  <path d="M128 28 222 190 34 190Z" fill="#d4875a" opacity=".42" transform="rotate(42.5 128 128)"/>
+  <text x="128" y="151" fill="#e8d9b4" font-family="Arial, sans-serif" font-size="64" font-weight="700" text-anchor="middle">F6</text>
+</svg>

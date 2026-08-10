@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Avatar 08</title>
+  <desc id="desc">イニシャルと幾何学形で構成した架空作者アイコン</desc>
+  <rect width="256" height="256" rx="40" fill="#1b2630"/>
+  <circle cx="128" cy="128" r="92" fill="none" stroke="#4f879a" stroke-width="14" stroke-dasharray="53 21" transform="rotate(119 128 128)"/>
+  <path d="M128 28 222 190 34 190Z" fill="#d17b5f" opacity=".42" transform="rotate(59.5 128 128)"/>
+  <text x="128" y="151" fill="#e9c97e" font-family="Arial, sans-serif" font-size="64" font-weight="700" text-anchor="middle">H8</text>
+</svg>

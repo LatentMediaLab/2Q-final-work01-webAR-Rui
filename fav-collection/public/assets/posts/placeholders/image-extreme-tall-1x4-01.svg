@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="450" height="1800" viewBox="0 0 450 1800" role="img" aria-labelledby="title desc">
+  <title id="title">IMAGE 20 1:4</title>
+  <desc id="desc">極端に縦長のテスト用幾何学プレースホルダー</desc>
+  <defs>
+    <linearGradient id="background" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#17243b"/>
+      <stop offset="100%" stop-color="#6f8fba"/>
+    </linearGradient>
+    <pattern id="pattern" width="72" height="72" patternUnits="userSpaceOnUse"><path d="M0 72 72 0M-18 18 18-18M54 90 90 54" stroke="#efe5d0" stroke-width="5" opacity=".2"/></pattern>
+  </defs>
+  <rect width="450" height="1800" fill="url(#background)"/>
+  <rect width="450" height="1800" fill="url(#pattern)"/>
+  <rect x="32" y="32" width="386" height="1736" fill="none" stroke="#efe5d0" stroke-width="3"/>
+  <circle cx="126" cy="1080" r="95" fill="none" stroke="#d9a15b" stroke-width="11"/>
+  <rect x="261" y="648" width="135" height="432" fill="#d9a15b" opacity=".78" transform="rotate(-12 328.5 864)"/>
+  <path d="M32 1296 Q225 1296 418 1296" fill="none" stroke="#efe5d0" stroke-width="5" stroke-dasharray="16 10" opacity=".8"/>
+  <g fill="#efe5d0" font-family="Arial, 'Hiragino Sans', 'Yu Gothic', sans-serif" text-anchor="end">
+    <text x="418" y="66" font-size="34" font-weight="700" letter-spacing="3">IMAGE 20</text>
+    <text x="418" y="96" font-size="20">1:4 / 450 × 1800</text>
+    <text x="418" y="1763" font-size="20">極端に縦長・余白確認用</text>
+  </g>
+</svg>

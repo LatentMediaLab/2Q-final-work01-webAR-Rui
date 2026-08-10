@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">作者アイコンのプレースホルダー</title>
+  <desc id="desc">暗い背景に金色の円と人物を表す抽象形</desc>
+  <rect width="128" height="128" fill="#211e18"/>
+  <circle cx="64" cy="64" r="51" fill="none" stroke="#c9a96e" stroke-width="4"/>
+  <circle cx="64" cy="49" r="18" fill="#c9a96e"/>
+  <path d="M31 103c5-21 18-32 33-32s28 11 33 32" fill="#c9a96e"/>
+</svg>

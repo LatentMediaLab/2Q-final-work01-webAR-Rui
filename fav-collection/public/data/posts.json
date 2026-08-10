@@ -1,0 +1,217 @@
+[
+  {
+    "id": "image-001",
+    "postUrl": "https://x.com/fav_collection/status/1001",
+    "authorName": "朝倉 ミナ",
+    "authorHandle": "@mina_archive",
+    "authorIconSrc": "/assets/placeholders/author.svg",
+    "text": "朝の光が棚のガラスに差し込んでいました。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/image-placeholder.svg",
+        "width": 1200,
+        "height": 800,
+        "alt": "琥珀色の抽象的なプレースホルダー画像"
+      }
+    ],
+    "viewCount": 12,
+    "likeCount": 3,
+    "repostCount": 0,
+    "postedAt": "2026-01-08T08:30:00+09:00",
+    "likedAt": "2026-01-08T09:12:00+09:00",
+    "tags": ["光", "記録"]
+  },
+  {
+    "id": "image-002",
+    "authorName": "標本室",
+    "authorHandle": "@specimen_room",
+    "authorIconSrc": "/assets/placeholders/author.svg",
+    "text": "採集した色の記録。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/image-placeholder.svg",
+        "width": 900,
+        "height": 1200,
+        "alt": "青緑色の標本を模したプレースホルダー画像"
+      }
+    ],
+    "viewCount": 380,
+    "likeCount": 42,
+    "postedAt": "2026-02-14T19:20:00+09:00"
+  },
+  {
+    "id": "image-003",
+    "postUrl": "https://x.com/fav_collection/status/1003",
+    "authorName": "夜の収集家",
+    "authorHandle": "@night_curator",
+    "authorIconSrc": "/assets/placeholders/author.svg",
+    "text": "街角で見つけた、名前のない形。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/image-placeholder.svg",
+        "width": 1400,
+        "height": 900,
+        "alt": "夜の街を想起させるプレースホルダー画像"
+      }
+    ],
+    "viewCount": 12500,
+    "likeCount": 830,
+    "repostCount": 76,
+    "displaySeed": 303
+  },
+  {
+    "id": "image-004",
+    "authorName": "小さな博物誌",
+    "authorHandle": "@tiny_natural_history",
+    "text": "窓辺の小さなコレクション。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/image-placeholder.svg",
+        "width": 1000,
+        "height": 1000,
+        "alt": "小さな収集物を表すプレースホルダー画像"
+      }
+    ],
+    "repostCount": 2,
+    "likedAt": "2026-03-02T11:40:00+09:00"
+  },
+  {
+    "id": "image-005",
+    "postUrl": "https://x.com/fav_collection/status/1005",
+    "authorName": "記憶の地図",
+    "authorHandle": "@memory_map",
+    "authorIconSrc": "/assets/placeholders/author.svg",
+    "text": "遠い場所を思い出すための地図。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/image-placeholder.svg",
+        "width": 1600,
+        "height": 1000,
+        "alt": "古い地図を思わせるプレースホルダー画像"
+      }
+    ],
+    "viewCount": 1800000,
+    "likeCount": 92100,
+    "repostCount": 18400
+  },
+  {
+    "id": "image-006",
+    "authorName": "余白採集",
+    "authorHandle": "@collecting_space",
+    "authorIconSrc": "/assets/placeholders/author.svg",
+    "text": "何もない場所にも、集めたくなる輪郭がある。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/image-placeholder.svg",
+        "width": 1200,
+        "height": 700,
+        "alt": "余白と輪郭を表すプレースホルダー画像"
+      }
+    ],
+    "viewCount": 25000,
+    "likeCount": 1700
+  },
+  {
+    "id": "video-001",
+    "postUrl": "https://x.com/fav_collection/status/2001",
+    "authorName": "動く標本",
+    "authorHandle": "@moving_specimen",
+    "authorIconSrc": "/assets/placeholders/author.svg",
+    "text": "光の変化を短い映像として採集しました。",
+    "mediaType": "video",
+    "media": [
+      {
+        "type": "video",
+        "src": "/assets/posts/placeholders/video-landscape-16x9-01.mp4",
+        "thumbnailSrc": "/assets/posts/placeholders/video-landscape-16x9-01-poster.svg",
+        "width": 1280,
+        "height": 720,
+        "alt": "動画用のローカルプレースホルダー"
+      }
+    ],
+    "viewCount": 7700,
+    "likeCount": 604,
+    "repostCount": 31
+  },
+  {
+    "id": "video-002",
+    "authorName": "時間収蔵庫",
+    "authorHandle": "@time_vault",
+    "authorIconSrc": "/assets/placeholders/author.svg",
+    "text": "数秒の出来事を、何度でも見返せる小箱へ。",
+    "mediaType": "video",
+    "media": [
+      {
+        "type": "video",
+        "src": "/assets/posts/placeholders/video-square-01.mp4",
+        "thumbnailSrc": "/assets/posts/placeholders/video-square-01-poster.svg",
+        "width": 1080,
+        "height": 1080,
+        "alt": "時間の流れを表す動画用プレースホルダー"
+      }
+    ],
+    "viewCount": 95000000,
+    "likeCount": 620000,
+    "repostCount": 88300,
+    "displaySeed": 202
+  },
+  {
+    "id": "text-001",
+    "postUrl": "https://x.com/fav_collection/status/3001",
+    "authorName": "観察日記",
+    "authorHandle": "@daily_observer",
+    "authorIconSrc": "/assets/placeholders/author.svg",
+    "text": "好きなものを集めると、自分でも知らなかった自分の輪郭が少しだけ見えてくる。",
+    "mediaType": "text",
+    "media": [],
+    "viewCount": 45,
+    "likeCount": 8,
+    "repostCount": 1
+  },
+  {
+    "id": "text-002",
+    "authorName": "ことばの保存室",
+    "authorHandle": "@word_preservation",
+    "authorIconSrc": "/assets/placeholders/author.svg",
+    "text": "タイムラインでは次々と過ぎ去ってしまう言葉も、いったん立ち止まって眺め直すと、書かれた瞬間とは異なる温度や手触りを持ちはじめます。誰かの短い記録、ふとした観察、名前のつかない感情を一つずつ選び取り、並べ替え、距離を置いて眺めること。その小さな行為の積み重ねが、個人的な博物館のような場所をつくるのかもしれません。",
+    "mediaType": "text",
+    "media": [],
+    "viewCount": 410000,
+    "likeCount": 15400,
+    "repostCount": 2600,
+    "tags": ["長文", "アーカイブ"]
+  },
+  {
+    "id": "text-003",
+    "authorName": "箱の中の宇宙",
+    "authorHandle": "@universe_in_box",
+    "text": "今日の収穫：光る石、青い影、忘れたくない言葉 🪨🦋✨",
+    "mediaType": "text",
+    "media": [],
+    "likedAt": "2026-05-18T22:10:00+09:00"
+  },
+  {
+    "id": "text-004",
+    "authorName": "壁面メモ",
+    "authorHandle": "@wall_note",
+    "authorIconSrc": "/assets/placeholders/author.svg",
+    "text": "収集とは、残すものを選ぶこと。",
+    "mediaType": "text",
+    "media": [],
+    "viewCount": 8000,
+    "likeCount": 503,
+    "postedAt": "2026-06-21T17:45:00+09:00"
+  }
+]

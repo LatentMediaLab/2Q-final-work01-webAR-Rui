@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-07-14T18:49:28.316Z",
+  "ffmpegAvailable": true,
+  "images": {
+    "logicalCount": 20,
+    "svgCount": 20,
+    "pngCount": 0
+  },
+  "videos": {
+    "requestedCount": 5,
+    "generatedCount": 5,
+    "formats": [
+      "MP4/OpenH264互換",
+      "MP4/OpenH264互換",
+      "MP4/OpenH264互換",
+      "MP4/OpenH264互換",
+      "MP4/OpenH264互換"
+    ],
+    "skipped": false,
+    "skippedReasons": []
+  },
+  "thumbnails": {
+    "logicalCount": 5,
+    "svgCount": 5,
+    "pngCount": 0
+  },
+  "avatars": 8,
+  "posts": 50,
+  "outputRoot": "public/assets/posts/placeholders",
+  "postsOutput": "public/data/posts.placeholder.json"
+}

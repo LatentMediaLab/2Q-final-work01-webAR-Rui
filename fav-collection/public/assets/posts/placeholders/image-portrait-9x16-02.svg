@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1600" viewBox="0 0 900 1600" role="img" aria-labelledby="title desc">
+  <title id="title">IMAGE 17 9:16</title>
+  <desc id="desc">縦長画像のテスト用幾何学プレースホルダー</desc>
+  <defs>
+    <linearGradient id="background" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#211b2f"/>
+      <stop offset="100%" stop-color="#d77b55"/>
+    </linearGradient>
+    <pattern id="pattern" width="84" height="84" patternUnits="userSpaceOnUse"><circle cx="14" cy="14" r="7" fill="#8eb9ad" opacity=".22"/><circle cx="56" cy="56" r="3" fill="#8eb9ad" opacity=".32"/></pattern>
+  </defs>
+  <rect width="900" height="1600" fill="url(#background)"/>
+  <rect width="900" height="1600" fill="url(#pattern)"/>
+  <rect x="59" y="59" width="782" height="1482" fill="none" stroke="#8eb9ad" stroke-width="5"/>
+  <circle cx="360" cy="960" r="189" fill="none" stroke="#f1c875" stroke-width="23"/>
+  <rect x="342" y="576" width="270" height="384" fill="#f1c875" opacity=".78" transform="rotate(0 477 768)"/>
+  <path d="M59 1152 Q450 1152 841 1152" fill="none" stroke="#8eb9ad" stroke-width="11" stroke-dasharray="32 20" opacity=".8"/>
+  <g fill="#8eb9ad" font-family="Arial, 'Hiragino Sans', 'Yu Gothic', sans-serif" text-anchor="start">
+    <text x="59" y="127" font-size="68" font-weight="700" letter-spacing="5">IMAGE 17</text>
+    <text x="59" y="176.5" font-size="33">9:16 / 900 × 1600</text>
+    <text x="59" y="1532.75" font-size="33">縦長画像・余白確認用</text>
+  </g>
+</svg>

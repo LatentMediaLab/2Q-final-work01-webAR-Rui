@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">動画投稿のプレースホルダー</title>
+  <desc id="desc">暗い背景に再生記号を配した動画用プレースホルダー</desc>
+  <rect width="1280" height="720" fill="#1d2524"/>
+  <path d="M0 530 430 170l250 226 234-184 366 318v190H0Z" fill="#315b56"/>
+  <circle cx="640" cy="360" r="112" fill="#d2b274" opacity=".94"/>
+  <path d="m610 294 96 66-96 66Z" fill="#211e18"/>
+  <rect x="46" y="46" width="1188" height="628" fill="none" stroke="#d2b274" stroke-width="4"/>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">画像投稿のプレースホルダー</title>
+  <desc id="desc">琥珀色と青緑色の幾何学形による抽象的な標本画像</desc>
+  <rect width="1200" height="800" fill="#242018"/>
+  <rect x="58" y="58" width="1084" height="684" fill="none" stroke="#d2b274" stroke-width="4"/>
+  <circle cx="372" cy="382" r="206" fill="#a26032" opacity=".85"/>
+  <path d="M720 170 1040 400 720 630 530 400Z" fill="#3f7770" opacity=".86"/>
+  <circle cx="720" cy="400" r="76" fill="#e3c98e"/>
+</svg>

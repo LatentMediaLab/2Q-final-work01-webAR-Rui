@@ -1,0 +1,1316 @@
+[
+  {
+    "id": "placeholder-image-01",
+    "authorName": "架空収集家 01",
+    "authorHandle": "@placeholder_01",
+    "text": "正方形画像 1:1 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は01です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-square-01.svg",
+        "width": 1200,
+        "height": 1200,
+        "alt": "IMAGE 01 1:1 正方形画像"
+      }
+    ],
+    "postedAt": "2026-01-01T10:00:00+09:00",
+    "likedAt": "2026-02-01T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "1:1"
+    ],
+    "viewCount": 10,
+    "likeCount": 0,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-01.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-01",
+    "repostCount": 0,
+    "displaySeed": 202600
+  },
+  {
+    "id": "placeholder-image-02",
+    "authorName": "架空収集家 02",
+    "authorHandle": "@placeholder_02",
+    "text": "正方形画像 1:1 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は02です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-square-02.svg",
+        "width": 1200,
+        "height": 1200,
+        "alt": "IMAGE 02 1:1 正方形画像"
+      }
+    ],
+    "postedAt": "2026-01-02T10:00:00+09:00",
+    "likedAt": "2026-02-02T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "1:1"
+    ],
+    "viewCount": 100,
+    "likeCount": 4,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-02.svg",
+    "repostCount": 0,
+    "displaySeed": 202601
+  },
+  {
+    "id": "placeholder-image-03",
+    "authorName": "架空収集家 03",
+    "authorHandle": "@placeholder_03",
+    "text": "正方形画像 1:1 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は03です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-square-03.svg",
+        "width": 1200,
+        "height": 1200,
+        "alt": "IMAGE 03 1:1 正方形画像"
+      }
+    ],
+    "postedAt": "2026-01-03T10:00:00+09:00",
+    "likedAt": "2026-02-03T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "1:1"
+    ],
+    "viewCount": 1000,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-03.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-03",
+    "repostCount": 4,
+    "displaySeed": 202602
+  },
+  {
+    "id": "placeholder-image-04",
+    "authorName": "架空収集家 04",
+    "authorHandle": "@placeholder_04",
+    "text": "正方形画像 1:1 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は04です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-square-04.svg",
+        "width": 1200,
+        "height": 1200,
+        "alt": "IMAGE 04 1:1 正方形画像"
+      }
+    ],
+    "postedAt": "2026-01-04T10:00:00+09:00",
+    "likedAt": "2026-02-04T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "1:1"
+    ],
+    "viewCount": 10000,
+    "likeCount": 370,
+    "postUrl": "/placeholder/posts/placeholder-image-04",
+    "repostCount": 40,
+    "displaySeed": 202603
+  },
+  {
+    "id": "placeholder-image-05",
+    "authorName": "架空収集家 05",
+    "authorHandle": "@placeholder_05",
+    "text": "横長画像 16:9 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は05です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-landscape-16x9-01.svg",
+        "width": 1600,
+        "height": 900,
+        "alt": "IMAGE 05 16:9 横長画像"
+      }
+    ],
+    "postedAt": "2026-01-05T10:00:00+09:00",
+    "likedAt": "2026-02-05T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "16:9"
+    ],
+    "likeCount": 93,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-05.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-05",
+    "repostCount": 4,
+    "displaySeed": 202604
+  },
+  {
+    "id": "placeholder-image-06",
+    "authorName": "架空収集家 06",
+    "authorHandle": "@placeholder_06",
+    "text": "横長画像 16:9 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は06です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-landscape-16x9-02.svg",
+        "width": 1600,
+        "height": 900,
+        "alt": "IMAGE 06 16:9 横長画像"
+      }
+    ],
+    "postedAt": "2026-01-06T10:00:00+09:00",
+    "likedAt": "2026-02-06T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "16:9"
+    ],
+    "viewCount": 1000000,
+    "likeCount": 37000,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-06.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-06",
+    "repostCount": 4000,
+    "displaySeed": 202605
+  },
+  {
+    "id": "placeholder-image-07",
+    "authorName": "架空収集家 07",
+    "authorHandle": "@placeholder_07",
+    "text": "横長画像 16:9 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は07です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-landscape-16x9-03.svg",
+        "width": 1600,
+        "height": 900,
+        "alt": "IMAGE 07 16:9 横長画像"
+      }
+    ],
+    "postedAt": "2026-01-07T10:00:00+09:00",
+    "likedAt": "2026-02-07T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "16:9"
+    ],
+    "viewCount": 10000000,
+    "likeCount": 370000,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-07.svg",
+    "repostCount": 40000,
+    "displaySeed": 202606
+  },
+  {
+    "id": "placeholder-image-08",
+    "authorName": "架空収集家 08",
+    "authorHandle": "@placeholder_08",
+    "text": "横長画像 16:9 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は08です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-landscape-16x9-04.svg",
+        "width": 1600,
+        "height": 900,
+        "alt": "IMAGE 08 16:9 横長画像"
+      }
+    ],
+    "postedAt": "2026-01-08T10:00:00+09:00",
+    "likedAt": "2026-02-08T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "16:9"
+    ],
+    "viewCount": 10000,
+    "likeCount": 370,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-08.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-08",
+    "repostCount": 40,
+    "displaySeed": 202607
+  },
+  {
+    "id": "placeholder-image-09",
+    "authorName": "架空収集家 01",
+    "authorHandle": "@placeholder_01",
+    "text": "横長画像 3:2 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は09です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-landscape-3x2-01.svg",
+        "width": 1500,
+        "height": 1000,
+        "alt": "IMAGE 09 3:2 横長画像"
+      }
+    ],
+    "postedAt": "2026-01-09T10:00:00+09:00",
+    "likedAt": "2026-02-09T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "3:2"
+    ],
+    "viewCount": 0,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-01.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-09",
+    "repostCount": 0,
+    "displaySeed": 202608
+  },
+  {
+    "id": "placeholder-image-10",
+    "authorName": "架空収集家 02",
+    "authorHandle": "@placeholder_02",
+    "text": "横長画像 3:2 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は10です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-landscape-3x2-02.svg",
+        "width": 1500,
+        "height": 1000,
+        "alt": "IMAGE 10 3:2 横長画像"
+      }
+    ],
+    "postedAt": "2026-01-10T10:00:00+09:00",
+    "likedAt": "2026-02-10T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "3:2"
+    ],
+    "viewCount": 100,
+    "likeCount": 4,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-02.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-10",
+    "repostCount": 0,
+    "displaySeed": 202609
+  },
+  {
+    "id": "placeholder-image-11",
+    "authorName": "架空収集家 03",
+    "authorHandle": "@placeholder_03",
+    "text": "横長画像 3:2 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は11です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-landscape-3x2-03.svg",
+        "width": 1500,
+        "height": 1000,
+        "alt": "IMAGE 11 3:2 横長画像"
+      }
+    ],
+    "postedAt": "2026-01-11T10:00:00+09:00",
+    "likedAt": "2026-02-11T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "3:2"
+    ],
+    "viewCount": 10,
+    "likeCount": 0,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-03.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-11",
+    "repostCount": 0,
+    "displaySeed": 202610
+  },
+  {
+    "id": "placeholder-image-12",
+    "authorName": "架空収集家 04",
+    "authorHandle": "@placeholder_04",
+    "text": "縦長画像 4:5 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は12です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-portrait-4x5-01.svg",
+        "width": 1000,
+        "height": 1250,
+        "alt": "IMAGE 12 4:5 縦長画像"
+      }
+    ],
+    "postedAt": "2026-01-12T10:00:00+09:00",
+    "likedAt": "2026-02-12T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "4:5"
+    ],
+    "likeCount": 93,
+    "repostCount": 4,
+    "displaySeed": 202611
+  },
+  {
+    "id": "placeholder-image-13",
+    "authorName": "架空収集家 05",
+    "authorHandle": "@placeholder_05",
+    "text": "縦長画像 4:5 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は13です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-portrait-4x5-02.svg",
+        "width": 1000,
+        "height": 1250,
+        "alt": "IMAGE 13 4:5 縦長画像"
+      }
+    ],
+    "postedAt": "2026-01-13T10:00:00+09:00",
+    "likedAt": "2026-02-13T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "4:5"
+    ],
+    "viewCount": 1000,
+    "likeCount": 37,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-05.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-13",
+    "repostCount": 4,
+    "displaySeed": 202612
+  },
+  {
+    "id": "placeholder-image-14",
+    "authorName": "架空収集家 06",
+    "authorHandle": "@placeholder_06",
+    "text": "縦長画像 4:5 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は14です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-portrait-4x5-03.svg",
+        "width": 1000,
+        "height": 1250,
+        "alt": "IMAGE 14 4:5 縦長画像"
+      }
+    ],
+    "postedAt": "2026-01-14T10:00:00+09:00",
+    "likedAt": "2026-02-14T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "4:5"
+    ],
+    "viewCount": 10000,
+    "likeCount": 370,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-06.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-14",
+    "repostCount": 40,
+    "displaySeed": 202613
+  },
+  {
+    "id": "placeholder-image-15",
+    "authorName": "架空収集家 07",
+    "authorHandle": "@placeholder_07",
+    "text": "縦長画像 4:5 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は15です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-portrait-4x5-04.svg",
+        "width": 1000,
+        "height": 1250,
+        "alt": "IMAGE 15 4:5 縦長画像"
+      }
+    ],
+    "postedAt": "2026-01-15T10:00:00+09:00",
+    "likedAt": "2026-02-15T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "4:5"
+    ],
+    "viewCount": 100000,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-07.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-15",
+    "repostCount": 400,
+    "displaySeed": 202614
+  },
+  {
+    "id": "placeholder-image-16",
+    "authorName": "架空収集家 08",
+    "authorHandle": "@placeholder_08",
+    "text": "縦長画像 9:16 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は16です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-portrait-9x16-01.svg",
+        "width": 900,
+        "height": 1600,
+        "alt": "IMAGE 16 9:16 縦長画像"
+      }
+    ],
+    "postedAt": "2026-01-16T10:00:00+09:00",
+    "likedAt": "2026-02-16T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "9:16"
+    ],
+    "viewCount": 1000000,
+    "likeCount": 37000,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-08.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-16",
+    "repostCount": 4000,
+    "displaySeed": 202615
+  },
+  {
+    "id": "placeholder-image-17",
+    "authorName": "架空収集家 01",
+    "authorHandle": "@placeholder_01",
+    "text": "縦長画像 9:16 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は17です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-portrait-9x16-02.svg",
+        "width": 900,
+        "height": 1600,
+        "alt": "IMAGE 17 9:16 縦長画像"
+      }
+    ],
+    "postedAt": "2026-01-17T10:00:00+09:00",
+    "likedAt": "2026-02-17T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "9:16"
+    ],
+    "viewCount": 10000000,
+    "likeCount": 370000,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-01.svg",
+    "repostCount": 40000,
+    "displaySeed": 202616
+  },
+  {
+    "id": "placeholder-image-18",
+    "authorName": "架空収集家 02",
+    "authorHandle": "@placeholder_02",
+    "text": "縦長画像 9:16 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は18です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-portrait-9x16-03.svg",
+        "width": 900,
+        "height": 1600,
+        "alt": "IMAGE 18 9:16 縦長画像"
+      }
+    ],
+    "postedAt": "2026-01-18T10:00:00+09:00",
+    "likedAt": "2026-02-18T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "9:16"
+    ],
+    "viewCount": 10000,
+    "likeCount": 370,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-02.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-18",
+    "repostCount": 40,
+    "displaySeed": 202617
+  },
+  {
+    "id": "placeholder-image-19",
+    "authorName": "架空収集家 03",
+    "authorHandle": "@placeholder_03",
+    "text": "極端に横長 4:1 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は19です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-extreme-wide-4x1-01.svg",
+        "width": 1800,
+        "height": 450,
+        "alt": "IMAGE 19 4:1 極端に横長"
+      }
+    ],
+    "postedAt": "2026-01-19T10:00:00+09:00",
+    "likedAt": "2026-02-19T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "4:1"
+    ],
+    "likeCount": 93,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-03.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-19",
+    "repostCount": 4,
+    "displaySeed": 202618
+  },
+  {
+    "id": "placeholder-image-20",
+    "authorName": "架空収集家 04",
+    "authorHandle": "@placeholder_04",
+    "text": "極端に縦長 1:4 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は20です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-extreme-tall-1x4-01.svg",
+        "width": 450,
+        "height": 1800,
+        "alt": "IMAGE 20 1:4 極端に縦長"
+      }
+    ],
+    "postedAt": "2026-01-20T10:00:00+09:00",
+    "likedAt": "2026-02-20T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "1:4"
+    ],
+    "viewCount": 100,
+    "likeCount": 4,
+    "postUrl": "/placeholder/posts/placeholder-image-20",
+    "repostCount": 0,
+    "displaySeed": 202619
+  },
+  {
+    "id": "placeholder-image-21",
+    "authorName": "架空収集家 05",
+    "authorHandle": "@placeholder_05",
+    "text": "正方形画像 1:1 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は21です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-square-01.svg",
+        "width": 1200,
+        "height": 1200,
+        "alt": "IMAGE 01 1:1 正方形画像"
+      }
+    ],
+    "postedAt": "2026-01-01T10:00:00+09:00",
+    "likedAt": "2026-02-01T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "1:1"
+    ],
+    "viewCount": 10,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-05.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-21",
+    "repostCount": 0,
+    "displaySeed": 202620
+  },
+  {
+    "id": "placeholder-image-22",
+    "authorName": "架空収集家 06",
+    "authorHandle": "@placeholder_06",
+    "text": "正方形画像 1:1 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は22です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-square-02.svg",
+        "width": 1200,
+        "height": 1200,
+        "alt": "IMAGE 02 1:1 正方形画像"
+      }
+    ],
+    "postedAt": "2026-01-02T10:00:00+09:00",
+    "likedAt": "2026-02-02T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "1:1"
+    ],
+    "viewCount": 100,
+    "likeCount": 4,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-06.svg",
+    "repostCount": 0,
+    "displaySeed": 202621
+  },
+  {
+    "id": "placeholder-image-23",
+    "authorName": "架空収集家 07",
+    "authorHandle": "@placeholder_07",
+    "text": "正方形画像 1:1 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は23です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-square-03.svg",
+        "width": 1200,
+        "height": 1200,
+        "alt": "IMAGE 03 1:1 正方形画像"
+      }
+    ],
+    "postedAt": "2026-01-03T10:00:00+09:00",
+    "likedAt": "2026-02-03T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "1:1"
+    ],
+    "viewCount": 1000,
+    "likeCount": 37,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-07.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-23",
+    "repostCount": 4,
+    "displaySeed": 202622
+  },
+  {
+    "id": "placeholder-image-24",
+    "authorName": "架空収集家 08",
+    "authorHandle": "@placeholder_08",
+    "text": "正方形画像 1:1 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は24です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-square-04.svg",
+        "width": 1200,
+        "height": 1200,
+        "alt": "IMAGE 04 1:1 正方形画像"
+      }
+    ],
+    "postedAt": "2026-01-04T10:00:00+09:00",
+    "likedAt": "2026-02-04T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "1:1"
+    ],
+    "viewCount": 10000,
+    "likeCount": 370,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-08.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-24",
+    "repostCount": 40,
+    "displaySeed": 202623
+  },
+  {
+    "id": "placeholder-image-25",
+    "authorName": "架空収集家 01",
+    "authorHandle": "@placeholder_01",
+    "text": "横長画像 16:9 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は25です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-landscape-16x9-01.svg",
+        "width": 1600,
+        "height": 900,
+        "alt": "IMAGE 05 16:9 横長画像"
+      }
+    ],
+    "postedAt": "2026-01-05T10:00:00+09:00",
+    "likedAt": "2026-02-05T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "16:9"
+    ],
+    "viewCount": 100000,
+    "likeCount": 3700,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-01.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-25",
+    "repostCount": 400,
+    "displaySeed": 202624
+  },
+  {
+    "id": "placeholder-image-26",
+    "authorName": "架空収集家 02",
+    "authorHandle": "@placeholder_02",
+    "text": "横長画像 16:9 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は26です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-landscape-16x9-02.svg",
+        "width": 1600,
+        "height": 900,
+        "alt": "IMAGE 06 16:9 横長画像"
+      }
+    ],
+    "postedAt": "2026-01-06T10:00:00+09:00",
+    "likedAt": "2026-02-06T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "16:9"
+    ],
+    "likeCount": 93,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-02.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-26",
+    "repostCount": 4,
+    "displaySeed": 202625
+  },
+  {
+    "id": "placeholder-image-27",
+    "authorName": "架空収集家 03",
+    "authorHandle": "@placeholder_03",
+    "text": "横長画像 16:9 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は27です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-landscape-16x9-03.svg",
+        "width": 1600,
+        "height": 900,
+        "alt": "IMAGE 07 16:9 横長画像"
+      }
+    ],
+    "postedAt": "2026-01-07T10:00:00+09:00",
+    "likedAt": "2026-02-07T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "16:9"
+    ],
+    "viewCount": 10000000,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-03.svg",
+    "repostCount": 40000,
+    "displaySeed": 202626
+  },
+  {
+    "id": "placeholder-image-28",
+    "authorName": "架空収集家 04",
+    "authorHandle": "@placeholder_04",
+    "text": "横長画像 16:9 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は28です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-landscape-16x9-04.svg",
+        "width": 1600,
+        "height": 900,
+        "alt": "IMAGE 08 16:9 横長画像"
+      }
+    ],
+    "postedAt": "2026-01-08T10:00:00+09:00",
+    "likedAt": "2026-02-08T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "16:9"
+    ],
+    "viewCount": 10000,
+    "likeCount": 370,
+    "postUrl": "/placeholder/posts/placeholder-image-28",
+    "repostCount": 40,
+    "displaySeed": 202627
+  },
+  {
+    "id": "placeholder-image-29",
+    "authorName": "架空収集家 05",
+    "authorHandle": "@placeholder_05",
+    "text": "横長画像 3:2 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は29です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-landscape-3x2-01.svg",
+        "width": 1500,
+        "height": 1000,
+        "alt": "IMAGE 09 3:2 横長画像"
+      }
+    ],
+    "postedAt": "2026-01-09T10:00:00+09:00",
+    "likedAt": "2026-02-09T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "3:2"
+    ],
+    "viewCount": 0,
+    "likeCount": 0,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-05.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-29",
+    "repostCount": 0,
+    "displaySeed": 202628
+  },
+  {
+    "id": "placeholder-image-30",
+    "authorName": "架空収集家 06",
+    "authorHandle": "@placeholder_06",
+    "text": "横長画像 3:2 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は30です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-landscape-3x2-02.svg",
+        "width": 1500,
+        "height": 1000,
+        "alt": "IMAGE 10 3:2 横長画像"
+      }
+    ],
+    "postedAt": "2026-01-10T10:00:00+09:00",
+    "likedAt": "2026-02-10T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "3:2"
+    ],
+    "viewCount": 100,
+    "likeCount": 4,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-06.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-30",
+    "repostCount": 0,
+    "displaySeed": 202629
+  },
+  {
+    "id": "placeholder-image-31",
+    "authorName": "架空収集家 07",
+    "authorHandle": "@placeholder_07",
+    "text": "横長画像 3:2 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は31です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-landscape-3x2-03.svg",
+        "width": 1500,
+        "height": 1000,
+        "alt": "IMAGE 11 3:2 横長画像"
+      }
+    ],
+    "postedAt": "2026-01-11T10:00:00+09:00",
+    "likedAt": "2026-02-11T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "3:2"
+    ],
+    "viewCount": 10,
+    "likeCount": 0,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-07.svg",
+    "postUrl": "/placeholder/posts/placeholder-image-31",
+    "repostCount": 0,
+    "displaySeed": 202630
+  },
+  {
+    "id": "placeholder-image-32",
+    "authorName": "架空収集家 08",
+    "authorHandle": "@placeholder_08",
+    "text": "縦長画像 4:5 の額縁・余白・アスペクト比確認用投稿です。展示密度の確認番号は32です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/image-portrait-4x5-01.svg",
+        "width": 1000,
+        "height": 1250,
+        "alt": "IMAGE 12 4:5 縦長画像"
+      }
+    ],
+    "postedAt": "2026-01-12T10:00:00+09:00",
+    "likedAt": "2026-02-12T12:00:00+09:00",
+    "tags": [
+      "placeholder",
+      "image",
+      "4:5"
+    ],
+    "viewCount": 100,
+    "likeCount": 4,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-08.svg",
+    "repostCount": 0,
+    "displaySeed": 202631
+  },
+  {
+    "id": "placeholder-text-01",
+    "authorName": "架空テキスト作者 01",
+    "authorHandle": "@placeholder_text_01",
+    "text": "短文テスト：小さな記憶を一つ保存。〈01〉",
+    "mediaType": "text",
+    "media": [],
+    "tags": [
+      "placeholder",
+      "text"
+    ],
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-01.svg",
+    "postUrl": "/placeholder/posts/placeholder-text-01",
+    "repostCount": 4,
+    "displaySeed": 202632
+  },
+  {
+    "id": "placeholder-text-02",
+    "authorName": "架空テキスト作者 02",
+    "authorHandle": "@placeholder_text_02",
+    "text": "Medium text / 中程度の文章です。日本語と English words を混在させ、文字幅と折り返しの違いを確認します。",
+    "mediaType": "text",
+    "media": [],
+    "tags": [
+      "placeholder",
+      "text"
+    ],
+    "viewCount": 10000,
+    "likeCount": 370,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-02.svg",
+    "postUrl": "/placeholder/posts/placeholder-text-02",
+    "repostCount": 40,
+    "displaySeed": 202633
+  },
+  {
+    "id": "placeholder-text-03",
+    "authorName": "架空テキスト作者 03",
+    "authorHandle": "@placeholder_text_03",
+    "text": "これは長文日本語の表示確認用に作成した架空文章です。展示空間の中で文字がどの程度の長さまで読み取れるか、改行を含む場合にテクスチャやレイアウトへどのような影響が出るかを確認します。\n二段落目では、収集・分類・再配置という架空の行為について説明し、実在する投稿内容には依存しません。",
+    "mediaType": "text",
+    "media": [],
+    "tags": [
+      "placeholder",
+      "text"
+    ],
+    "viewCount": 100000,
+    "likeCount": 3700,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-03.svg",
+    "postUrl": "/placeholder/posts/placeholder-text-03",
+    "repostCount": 400,
+    "displaySeed": 202634
+  },
+  {
+    "id": "placeholder-text-04",
+    "authorName": "架空テキスト作者 04",
+    "authorHandle": "@placeholder_text_04",
+    "text": "絵文字と記号の確認 🪐📚✨ ／ ☆ → ※ 【仮】 #placeholder & symbols!",
+    "mediaType": "text",
+    "media": [],
+    "tags": [
+      "placeholder",
+      "text"
+    ],
+    "viewCount": 1000000,
+    "likeCount": 37000,
+    "postUrl": "/placeholder/posts/placeholder-text-04",
+    "repostCount": 4000,
+    "displaySeed": 202635
+  },
+  {
+    "id": "placeholder-text-05",
+    "authorName": "架空テキスト作者 05",
+    "authorHandle": "@placeholder_text_05",
+    "text": "非常に長い一行テキストの確認用です。この文章は途中に改行を入れず、同じ速度で壁面を移動する際の横幅、CanvasTextureの必要寸法、読みやすさ、ループ開始位置、英数字TEST-2026と日本語が連続した場合のフォントフォールバックを検証するためだけに作られた完全な架空文章であり、実在する人物やサービス上の投稿を参照していません。",
+    "mediaType": "text",
+    "media": [],
+    "tags": [
+      "placeholder",
+      "text"
+    ],
+    "viewCount": 10000000,
+    "likeCount": 370000,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-05.svg",
+    "repostCount": 40000,
+    "displaySeed": 202636
+  },
+  {
+    "id": "placeholder-text-06",
+    "authorName": "架空テキスト作者 06",
+    "authorHandle": "@placeholder_text_06",
+    "text": "余白と密度の確認：小さな展示片が、隣の収集物の輪郭を邪魔せずに流れるかを観察します。",
+    "mediaType": "text",
+    "media": [],
+    "tags": [
+      "placeholder",
+      "text"
+    ],
+    "viewCount": 10000,
+    "likeCount": 370,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-06.svg",
+    "postUrl": "/placeholder/posts/placeholder-text-06",
+    "repostCount": 40,
+    "displaySeed": 202637
+  },
+  {
+    "id": "placeholder-text-07",
+    "authorName": "架空テキスト作者 07",
+    "authorHandle": "@placeholder_text_07",
+    "text": "Line one for a fictional archive.\n二行目は日本語の表示確認です。\nThird line: 123 / ABC / △○□",
+    "mediaType": "text",
+    "media": [],
+    "tags": [
+      "placeholder",
+      "text"
+    ],
+    "viewCount": 0,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-07.svg",
+    "postUrl": "/placeholder/posts/placeholder-text-07",
+    "repostCount": 0,
+    "displaySeed": 202638
+  },
+  {
+    "id": "placeholder-text-08",
+    "authorName": "架空テキスト作者 08",
+    "authorHandle": "@placeholder_text_08",
+    "text": "記号列テスト｜01→02→03｜『架空の断片』｜…！？ #50posts 🧭",
+    "mediaType": "text",
+    "media": [],
+    "tags": [
+      "placeholder",
+      "text"
+    ],
+    "likeCount": 93,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-08.svg",
+    "postUrl": "/placeholder/posts/placeholder-text-08",
+    "repostCount": 4,
+    "displaySeed": 202639
+  },
+  {
+    "id": "placeholder-video-01",
+    "authorName": "架空映像作者 01",
+    "authorHandle": "@placeholder_video_01",
+    "text": "VIDEO 01 16:9 の無音ループとサムネイル確認用です。展示密度の確認番号は01です。",
+    "mediaType": "video",
+    "media": [
+      {
+        "type": "video",
+        "src": "/assets/posts/placeholders/video-landscape-16x9-01.mp4",
+        "thumbnailSrc": "/assets/posts/placeholders/video-landscape-16x9-01-poster.svg",
+        "width": 640,
+        "height": 360,
+        "alt": "VIDEO 01 16:9 横動画"
+      }
+    ],
+    "tags": [
+      "placeholder",
+      "video",
+      "16:9"
+    ],
+    "viewCount": 10,
+    "likeCount": 0,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-01.svg",
+    "postUrl": "/placeholder/posts/placeholder-video-01",
+    "repostCount": 0,
+    "displaySeed": 202640
+  },
+  {
+    "id": "placeholder-video-02",
+    "authorName": "架空映像作者 02",
+    "authorHandle": "@placeholder_video_02",
+    "text": "VIDEO 02 16:9 の無音ループとサムネイル確認用です。展示密度の確認番号は02です。",
+    "mediaType": "video",
+    "media": [
+      {
+        "type": "video",
+        "src": "/assets/posts/placeholders/video-landscape-16x9-02.mp4",
+        "thumbnailSrc": "/assets/posts/placeholders/video-landscape-16x9-02-poster.svg",
+        "width": 640,
+        "height": 360,
+        "alt": "VIDEO 02 16:9 横動画"
+      }
+    ],
+    "tags": [
+      "placeholder",
+      "video",
+      "16:9"
+    ],
+    "viewCount": 100,
+    "likeCount": 4,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-02.svg",
+    "repostCount": 0,
+    "displaySeed": 202641
+  },
+  {
+    "id": "placeholder-video-03",
+    "authorName": "架空映像作者 03",
+    "authorHandle": "@placeholder_video_03",
+    "text": "VIDEO 03 9:16 の無音ループとサムネイル確認用です。展示密度の確認番号は03です。",
+    "mediaType": "video",
+    "media": [
+      {
+        "type": "video",
+        "src": "/assets/posts/placeholders/video-portrait-9x16-01.mp4",
+        "thumbnailSrc": "/assets/posts/placeholders/video-portrait-9x16-01-poster.svg",
+        "width": 360,
+        "height": 640,
+        "alt": "VIDEO 03 9:16 縦動画"
+      }
+    ],
+    "tags": [
+      "placeholder",
+      "video",
+      "9:16"
+    ],
+    "viewCount": 1000,
+    "likeCount": 37,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-03.svg",
+    "postUrl": "/placeholder/posts/placeholder-video-03",
+    "repostCount": 4,
+    "displaySeed": 202642
+  },
+  {
+    "id": "placeholder-video-04",
+    "authorName": "架空映像作者 04",
+    "authorHandle": "@placeholder_video_04",
+    "text": "VIDEO 04 9:16 の無音ループとサムネイル確認用です。展示密度の確認番号は04です。",
+    "mediaType": "video",
+    "media": [
+      {
+        "type": "video",
+        "src": "/assets/posts/placeholders/video-portrait-9x16-02.mp4",
+        "thumbnailSrc": "/assets/posts/placeholders/video-portrait-9x16-02-poster.svg",
+        "width": 360,
+        "height": 640,
+        "alt": "VIDEO 04 9:16 縦動画"
+      }
+    ],
+    "tags": [
+      "placeholder",
+      "video",
+      "9:16"
+    ],
+    "viewCount": 10000,
+    "likeCount": 370,
+    "postUrl": "/placeholder/posts/placeholder-video-04",
+    "repostCount": 40,
+    "displaySeed": 202643
+  },
+  {
+    "id": "placeholder-video-05",
+    "authorName": "架空映像作者 05",
+    "authorHandle": "@placeholder_video_05",
+    "text": "VIDEO 05 1:1 の無音ループとサムネイル確認用です。展示密度の確認番号は05です。",
+    "mediaType": "video",
+    "media": [
+      {
+        "type": "video",
+        "src": "/assets/posts/placeholders/video-square-01.mp4",
+        "thumbnailSrc": "/assets/posts/placeholders/video-square-01-poster.svg",
+        "width": 480,
+        "height": 480,
+        "alt": "VIDEO 05 1:1 正方形動画"
+      }
+    ],
+    "tags": [
+      "placeholder",
+      "video",
+      "1:1"
+    ],
+    "viewCount": 100000,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-05.svg",
+    "postUrl": "/placeholder/posts/placeholder-video-05",
+    "repostCount": 400,
+    "displaySeed": 202644
+  },
+  {
+    "id": "placeholder-video-06",
+    "authorName": "架空映像作者 06",
+    "authorHandle": "@placeholder_video_06",
+    "text": "VIDEO 01 16:9 の無音ループとサムネイル確認用です。展示密度の確認番号は06です。",
+    "mediaType": "video",
+    "media": [
+      {
+        "type": "video",
+        "src": "/assets/posts/placeholders/video-landscape-16x9-01.mp4",
+        "thumbnailSrc": "/assets/posts/placeholders/video-landscape-16x9-01-poster.svg",
+        "width": 640,
+        "height": 360,
+        "alt": "VIDEO 01 16:9 横動画"
+      }
+    ],
+    "tags": [
+      "placeholder",
+      "video",
+      "16:9"
+    ],
+    "viewCount": 1000000,
+    "likeCount": 37000,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-06.svg",
+    "postUrl": "/placeholder/posts/placeholder-video-06",
+    "repostCount": 4000,
+    "displaySeed": 202645
+  },
+  {
+    "id": "placeholder-video-07",
+    "authorName": "架空映像作者 07",
+    "authorHandle": "@placeholder_video_07",
+    "text": "VIDEO 02 16:9 の無音ループとサムネイル確認用です。展示密度の確認番号は07です。",
+    "mediaType": "video",
+    "media": [
+      {
+        "type": "video",
+        "src": "/assets/posts/placeholders/video-landscape-16x9-02.mp4",
+        "thumbnailSrc": "/assets/posts/placeholders/video-landscape-16x9-02-poster.svg",
+        "width": 640,
+        "height": 360,
+        "alt": "VIDEO 02 16:9 横動画"
+      }
+    ],
+    "tags": [
+      "placeholder",
+      "video",
+      "16:9"
+    ],
+    "likeCount": 93,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-07.svg",
+    "repostCount": 4,
+    "displaySeed": 202646
+  },
+  {
+    "id": "placeholder-video-08",
+    "authorName": "架空映像作者 08",
+    "authorHandle": "@placeholder_video_08",
+    "text": "VIDEO 03 9:16 の無音ループとサムネイル確認用です。展示密度の確認番号は08です。",
+    "mediaType": "video",
+    "media": [
+      {
+        "type": "video",
+        "src": "/assets/posts/placeholders/video-portrait-9x16-01.mp4",
+        "thumbnailSrc": "/assets/posts/placeholders/video-portrait-9x16-01-poster.svg",
+        "width": 360,
+        "height": 640,
+        "alt": "VIDEO 03 9:16 縦動画"
+      }
+    ],
+    "tags": [
+      "placeholder",
+      "video",
+      "9:16"
+    ],
+    "viewCount": 10000,
+    "likeCount": 370,
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-08.svg",
+    "postUrl": "/placeholder/posts/placeholder-video-08",
+    "repostCount": 40,
+    "displaySeed": 202647
+  },
+  {
+    "id": "placeholder-error-image-01",
+    "authorName": "架空エラー確認",
+    "authorHandle": "@placeholder_error",
+    "authorIconSrc": "/assets/posts/placeholders/avatars/avatar-01.svg",
+    "text": "存在しない画像を参照し、画像フォールバックを確認する投稿です。",
+    "mediaType": "image",
+    "media": [
+      {
+        "type": "image",
+        "src": "/assets/posts/placeholders/missing/image-does-not-exist.png",
+        "width": 1200,
+        "height": 800,
+        "alt": "意図的に存在しない画像"
+      }
+    ],
+    "viewCount": 10000,
+    "likeCount": 100,
+    "tags": [
+      "placeholder",
+      "intentional-error",
+      "missing-image"
+    ],
+    "displaySeed": 202631
+  },
+  {
+    "id": "placeholder-error-video-01",
+    "authorName": "架空エラー確認",
+    "authorHandle": "@placeholder_error",
+    "text": "存在しない動画とサムネイルを参照し、動画フォールバックを確認する投稿です。",
+    "mediaType": "video",
+    "media": [
+      {
+        "type": "video",
+        "src": "/assets/posts/placeholders/missing/video-does-not-exist.mp4",
+        "thumbnailSrc": "/assets/posts/placeholders/missing/video-poster-does-not-exist.png",
+        "width": 640,
+        "height": 360,
+        "alt": "意図的に存在しない動画とサムネイル"
+      }
+    ],
+    "viewCount": 10000,
+    "tags": [
+      "placeholder",
+      "intentional-error",
+      "missing-video"
+    ],
+    "displaySeed": 202632
+  }
+]

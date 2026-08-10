@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Avatar 03</title>
+  <desc id="desc">イニシャルと幾何学形で構成した架空作者アイコン</desc>
+  <rect width="256" height="256" rx="40" fill="#2b1f18"/>
+  <circle cx="128" cy="128" r="92" fill="none" stroke="#bd744b" stroke-width="14" stroke-dasharray="38 16" transform="rotate(34 128 128)"/>
+  <path d="M128 28 222 190 34 190Z" fill="#d4bd83" opacity=".42" transform="rotate(17 128 128)"/>
+  <text x="128" y="151" fill="#577a79" font-family="Arial, sans-serif" font-size="64" font-weight="700" text-anchor="middle">C3</text>
+</svg>

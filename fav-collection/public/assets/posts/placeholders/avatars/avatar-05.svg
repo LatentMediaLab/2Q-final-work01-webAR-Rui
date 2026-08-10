@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Avatar 05</title>
+  <desc id="desc">イニシャルと幾何学形で構成した架空作者アイコン</desc>
+  <rect width="256" height="256" rx="40" fill="#30202e"/>
+  <circle cx="128" cy="128" r="92" fill="none" stroke="#b9657a" stroke-width="14" stroke-dasharray="44 18" transform="rotate(68 128 128)"/>
+  <path d="M128 28 222 190 34 190Z" fill="#e3bd70" opacity=".42" transform="rotate(34 128 128)"/>
+  <text x="128" y="151" fill="#7fa5a0" font-family="Arial, sans-serif" font-size="64" font-weight="700" text-anchor="middle">E5</text>
+</svg>
