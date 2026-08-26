@@ -3,9 +3,9 @@ import { APP_CONFIG } from "../src/app/config";
 import { readPostsDataUrl } from "../src/app/readPostsDataUrl";
 
 describe("readPostsDataUrl", () => {
-  it("uses generated custom data by default", () => {
+  it("uses the backend posts API by default", () => {
     expect(readPostsDataUrl("?mode=preview")).toBe(
-      APP_CONFIG.data.customPostsUrl,
+      APP_CONFIG.data.postsApiUrl,
     );
   });
 
@@ -29,7 +29,7 @@ describe("readPostsDataUrl", () => {
 
   it("ignores unsupported data values", () => {
     expect(readPostsDataUrl("?data=unknown")).toBe(
-      APP_CONFIG.data.customPostsUrl,
+      APP_CONFIG.data.postsApiUrl,
     );
   });
 });

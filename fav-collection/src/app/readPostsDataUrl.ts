@@ -10,5 +10,8 @@ export function readPostsDataUrl(search: string): string {
   if (requestedData === APP_CONFIG.routing.placeholderDataValue) {
     return APP_CONFIG.data.placeholderPostsUrl;
   }
-  return APP_CONFIG.data.customPostsUrl;
+  if (requestedData === APP_CONFIG.routing.customDataValue) {
+    return APP_CONFIG.data.customPostsUrl;
+  }
+  return APP_CONFIG.data.postsApiUrl;
 }

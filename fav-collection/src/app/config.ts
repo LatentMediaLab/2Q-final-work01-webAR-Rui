@@ -61,6 +61,7 @@ export const APP_CONFIG = {
     recommendedMaxImageDimension: 2_048,
   },
   data: {
+    postsApiUrl: resolvePublicUrl("/api/posts"),
     postsUrl: resolvePublicUrl("/data/posts.json"),
     placeholderPostsUrl: resolvePublicUrl("/data/posts.placeholder.json"),
     customPostsUrl: resolvePublicUrl("/data/posts.custom.json"),

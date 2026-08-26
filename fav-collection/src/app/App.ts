@@ -56,15 +56,18 @@ function reportValidationIssues(issues: readonly ValidationIssue[]): void {
 }
 
 function createDefaultRepository(url: string): PostRepository {
+  const shouldUseFallback =
+    url === APP_CONFIG.data.postsApiUrl || url === APP_CONFIG.data.customPostsUrl;
+
   return new JsonPostRepository({
     url,
-    ...(url === APP_CONFIG.data.customPostsUrl
+    ...(shouldUseFallback
       ? { fallbackUrl: APP_CONFIG.data.placeholderPostsUrl }
       : {}),
     onValidationIssues: reportValidationIssues,
     onFallback: (error, fallbackUrl) => {
       console.warn(
-        `[Fav Collection] カスタム投稿データへアクセスできないため、プレースホルダーへ切り替えます。 (${fallbackUrl})`,
+        `[Fav Collection] 選択中の投稿データへアクセスできないため、プレースホルダーへ切り替えます。 (${fallbackUrl})`,
         error,
       );
     },
