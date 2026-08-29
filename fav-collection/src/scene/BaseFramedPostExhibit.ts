@@ -4,6 +4,7 @@ import type { PostMedia, PostRecord } from "../data/PostTypes";
 import {
   createCaptionTexture,
   createFallbackTexture,
+  createImagePostBodyTexture,
 } from "./CanvasTextureFactory";
 import type { ExhibitionLayoutItem } from "./ExhibitionLayout";
 import {
@@ -19,7 +20,7 @@ import { sharedPostTextureRepository } from "./SharedPostTextureRepository";
 export abstract class BaseFramedPostExhibit implements PostExhibit {
   public readonly group = new THREE.Group();
 
-  protected readonly contentCenterY = APP_CONFIG.layout.captionHeight / 2;
+  protected readonly contentCenterY: number;
   private readonly imageMaterial: THREE.MeshBasicMaterial;
   private readonly caption: THREE.Mesh;
   private disposed = false;
@@ -38,6 +39,13 @@ export abstract class BaseFramedPostExhibit implements PostExhibit {
       layout.rotationY,
       layout.rotationZ,
     );
+    const bodyHeight = layout.bodyHeight ?? 0;
+    const verticalLayout = getFramedPostVerticalLayout(
+      layout.contentHeight,
+      bodyHeight,
+    );
+    const framedContentHeight = verticalLayout.framedContentHeight;
+    this.contentCenterY = verticalLayout.imageCenterY;
     const sizeWarning = getOversizedMediaWarning(media);
     if (sizeWarning !== null) {
       console.warn(`[Fav Collection] 大きな画像素材 (id: ${post.id}): ${sizeWarning}`);
@@ -46,11 +54,11 @@ export abstract class BaseFramedPostExhibit implements PostExhibit {
     const frameVariant = selectFrameVariant(post.id, post.displaySeed);
     const support = createMountingSupport(
       layout.contentWidth,
-      layout.contentHeight,
+      framedContentHeight,
       layout.mountDepth,
       frameVariant,
     );
-    support.position.y = this.contentCenterY;
+    support.position.y = verticalLayout.frameCenterY;
     this.group.add(support);
 
     const fallbackTexture = createFallbackTexture(fallbackLabel);
@@ -68,11 +76,25 @@ export abstract class BaseFramedPostExhibit implements PostExhibit {
 
     const frame = createFrame(
       layout.contentWidth,
-      layout.contentHeight,
+      framedContentHeight,
       frameVariant,
     );
-    frame.position.y = this.contentCenterY;
+    frame.position.y = verticalLayout.frameCenterY;
     this.group.add(frame);
+
+    if (bodyHeight > 0 && post.text.trim().length > 0) {
+      const bodyTexture = createImagePostBodyTexture(post.text);
+      const body = new THREE.Mesh(
+        new THREE.PlaneGeometry(layout.contentWidth, bodyHeight),
+        new THREE.MeshBasicMaterial({
+          map: bodyTexture,
+          toneMapped: false,
+        }),
+      );
+      body.name = "image-post-body";
+      body.position.set(0, verticalLayout.bodyCenterY, 0.006);
+      this.group.add(body);
+    }
 
     const captionTexture = createCaptionTexture(post.authorHandle, post.viewCount);
     this.caption = new THREE.Mesh(
@@ -87,11 +109,7 @@ export abstract class BaseFramedPostExhibit implements PostExhibit {
       }),
     );
     this.caption.name = "post-caption";
-    this.caption.position.set(
-      0,
-      -layout.contentHeight / 2 - APP_CONFIG.layout.captionHeight * 0.12,
-      0.01,
-    );
+    this.caption.position.set(0, verticalLayout.captionCenterY, 0.01);
     this.group.add(this.caption);
   }
 
@@ -120,10 +138,6 @@ export abstract class BaseFramedPostExhibit implements PostExhibit {
     }
   }
 
-  public update(): void {}
-
-  public setTextAnimationPaused(): void {}
-
   public setCaptionsVisible(visible: boolean): void {
     this.caption.visible = visible;
   }
@@ -145,6 +159,31 @@ export abstract class BaseFramedPostExhibit implements PostExhibit {
       error,
     );
   }
+}
+
+export interface FramedPostVerticalLayout {
+  readonly framedContentHeight: number;
+  readonly frameCenterY: number;
+  readonly imageCenterY: number;
+  readonly bodyCenterY: number;
+  readonly captionCenterY: number;
+}
+
+export function getFramedPostVerticalLayout(
+  imageHeight: number,
+  bodyHeight: number,
+): FramedPostVerticalLayout {
+  const framedContentHeight = imageHeight + bodyHeight;
+  const frameCenterY = APP_CONFIG.layout.captionHeight / 2;
+
+  return {
+    framedContentHeight,
+    frameCenterY,
+    imageCenterY: frameCenterY - bodyHeight / 2,
+    bodyCenterY: frameCenterY + imageHeight / 2,
+    captionCenterY:
+      -framedContentHeight / 2 - APP_CONFIG.layout.captionHeight * 0.12,
+  };
 }
 
 export function requirePostMedia(

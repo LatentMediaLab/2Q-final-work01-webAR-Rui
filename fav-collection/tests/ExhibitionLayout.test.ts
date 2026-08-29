@@ -83,15 +83,23 @@ describe("ExhibitionLayout", () => {
     });
   });
 
-  it("keeps media placement independent from text lanes", () => {
-    const posts = createPosts();
-    const mediaPosts = posts.filter((post) => post.mediaType !== "text");
-    const mixedMediaLayout = createExhibitionLayout(posts).filter(
-      (item) => item.mediaType !== "text",
-    );
-    const mediaOnlyLayout = createExhibitionLayout(mediaPosts);
+  it("avoids collisions between text and media when space is available", () => {
+    const posts = [
+      createPost("mixed-text-1", "text", 100),
+      createPost("mixed-text-2", "text", 200),
+      createPost("mixed-image-1", "image", 300),
+      createPost("mixed-image-2", "image", 400),
+      createPost("mixed-image-3", "image", 500),
+    ];
+    const layout = createExhibitionLayout(posts);
+    const textLayouts = layout.filter((item) => item.mediaType === "text");
+    const mediaLayouts = layout.filter((item) => item.mediaType !== "text");
 
-    expect(mixedMediaLayout).toEqual(mediaOnlyLayout);
+    textLayouts.forEach((textLayout) => {
+      mediaLayouts.forEach((mediaLayout) => {
+        expect(rectanglesOverlap(textLayout, mediaLayout)).toBe(false);
+      });
+    });
   });
 
   it("places text surfaces behind every image and video exhibit", () => {
@@ -128,6 +136,17 @@ describe("ExhibitionLayout", () => {
     );
 
     expect(new Set(widths).size).toBeGreaterThan(4);
+  });
+
+  it("reserves body space only for image posts with text", () => {
+    const withBody = createPost("image-with-body", "image", 100);
+    const withoutBody = { ...withBody, text: "" };
+    const bodyLayout = createExhibitionLayout([withBody])[0];
+    const imageOnlyLayout = createExhibitionLayout([withoutBody])[0];
+
+    expect(bodyLayout?.bodyHeight).toBeGreaterThan(0);
+    expect(imageOnlyLayout?.bodyHeight).toBeUndefined();
+    expect(bodyLayout?.height).toBeGreaterThan(imageOnlyLayout?.height ?? Infinity);
   });
 
   it("adds deterministic three-dimensional poses within safe bounds", () => {
@@ -171,7 +190,7 @@ describe("ExhibitionLayout", () => {
     expect(new Set(laneIndexes).size).toBe(5);
   });
 
-  it("sizes scrolling text panels from their longest line", () => {
+  it("sizes text panels from their longest wrapped line", () => {
     const shortPost = createPost("short-text", "text", 100);
     const longPost = {
       ...createPost("long-text", "text", 100),

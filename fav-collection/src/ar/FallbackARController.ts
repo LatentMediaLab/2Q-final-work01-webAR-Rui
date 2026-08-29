@@ -61,7 +61,6 @@ export class FallbackARController {
   private orientationAccess: DeviceOrientationAccess | null = null;
   private orientationReference: THREE.Quaternion | null = null;
   private orientationListening = false;
-  private lastFrameTime = performance.now();
   private wallPlaced = false;
   private locked = false;
   private interactionEnabled = true;
@@ -141,10 +140,6 @@ export class FallbackARController {
       return;
     }
     await this.exhibition.load(posts);
-  }
-
-  public setTextAnimationPaused(paused: boolean): void {
-    this.exhibition.setTextAnimationPaused(paused);
   }
 
   public setCaptionsVisible(visible: boolean): void {
@@ -256,10 +251,6 @@ export class FallbackARController {
     if (this.disposed) {
       return;
     }
-    const now = performance.now();
-    const deltaSeconds = Math.min((now - this.lastFrameTime) / 1_000, 0.05);
-    this.lastFrameTime = now;
-    this.exhibition.update(deltaSeconds);
     this.renderer.render(this.scene, this.camera);
   };
 

@@ -86,8 +86,6 @@ export class App {
   private loadRequestId = 0;
   private supportRequestId = 0;
   private readonly postRepository: PostRepository;
-  private readonly reducedMotionPreferred: boolean;
-  private readonly reducedMotionQuery: MediaQueryList;
   private readonly debugOverlay: DebugOverlay | null;
 
   public constructor(
@@ -97,17 +95,13 @@ export class App {
   ) {
     this.postRepository =
       postRepository ?? createDefaultRepository(readPostsDataUrl(locationSearch));
-    this.reducedMotionQuery = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    );
-    this.reducedMotionPreferred = this.reducedMotionQuery.matches;
     this.state = {
       mode: "boot",
       requestedMode: readRequestedMode(locationSearch),
       notice: null,
       error: null,
       postCount: 0,
-      previewUi: createInitialPreviewUiState(this.reducedMotionPreferred),
+      previewUi: createInitialPreviewUiState(),
       arSupportStatus: "checking",
       arPlacementState: "loading",
       fallbackPlacementState: "aiming",
@@ -115,10 +109,6 @@ export class App {
       detailReturnMode: null,
       playingVideoId: null,
     };
-    this.reducedMotionQuery.addEventListener(
-      "change",
-      this.handleReducedMotionChange,
-    );
     this.debugOverlay = readDebugEnabled(locationSearch)
       ? new DebugOverlay(document.body, this.createDebugSnapshot())
       : null;
@@ -141,10 +131,6 @@ export class App {
     this.disposeScene();
     this.disposeXrScene();
     this.disposeFallbackScene();
-    this.reducedMotionQuery.removeEventListener(
-      "change",
-      this.handleReducedMotionChange,
-    );
     this.debugOverlay?.dispose();
     sharedPostTextureRepository.dispose();
     disposeSharedCanvasTextures();
@@ -217,7 +203,7 @@ export class App {
     this.transitionTo("error", {
       error: { kind, title, message },
       postCount: 0,
-      previewUi: createInitialPreviewUiState(this.reducedMotionPreferred),
+      previewUi: createInitialPreviewUiState(),
       arPlacementState: "loading",
       fallbackPlacementState: "aiming",
       fallbackTrackingMode: null,
@@ -235,7 +221,7 @@ export class App {
       error: null,
       notice: null,
       postCount: 0,
-      previewUi: createInitialPreviewUiState(this.reducedMotionPreferred),
+      previewUi: createInitialPreviewUiState(),
       arPlacementState: "loading",
       fallbackPlacementState: "aiming",
       fallbackTrackingMode: null,
@@ -324,7 +310,6 @@ export class App {
       onCloseSettings: () => this.updatePreviewUi({ type: "close-settings" }),
       onOpenInfo: () => this.updatePreviewUi({ type: "open-info" }),
       onCloseInfo: () => this.updatePreviewUi({ type: "close-info" }),
-      onToggleTextAnimation: () => this.toggleTextAnimation(),
       onStopVideos: () => this.previewView?.stopAllVideos(),
       onPlayingVideoChange: (postId) => this.handlePlayingVideoChange(postId),
       onToggleCaptions: () => this.toggleCaptions(),
@@ -338,9 +323,6 @@ export class App {
         onPostSelected: (postId) => this.openDetail(postId),
       });
       this.sceneManager = sceneManager;
-      sceneManager.setTextAnimationPaused(
-        this.state.previewUi.textAnimationPaused,
-      );
       sceneManager.setCaptionsVisible(this.state.previewUi.captionsVisible);
       void sceneManager.load(this.posts).catch((error: unknown) => {
         if (this.sceneManager !== sceneManager) {
@@ -406,7 +388,7 @@ export class App {
       postCount: 0,
       arPlacementState: "loading",
       detailReturnMode: null,
-      previewUi: createInitialPreviewUiState(this.reducedMotionPreferred),
+      previewUi: createInitialPreviewUiState(),
       playingVideoId: null,
     };
     this.render();
@@ -508,7 +490,7 @@ export class App {
       fallbackPlacementState: "aiming",
       fallbackTrackingMode: null,
       detailReturnMode: null,
-      previewUi: createInitialPreviewUiState(this.reducedMotionPreferred),
+      previewUi: createInitialPreviewUiState(),
       playingVideoId: null,
     };
     this.render();
@@ -598,7 +580,6 @@ export class App {
       onCloseSettings: () => this.updatePreviewUi({ type: "close-settings" }),
       onOpenInfo: () => this.updatePreviewUi({ type: "open-info" }),
       onCloseInfo: () => this.updatePreviewUi({ type: "close-info" }),
-      onToggleTextAnimation: () => this.toggleTextAnimation(),
       onStopVideos: () => this.arView?.stopAllVideos(),
       onPlayingVideoChange: (postId) => this.handlePlayingVideoChange(postId),
       onToggleCaptions: () => this.toggleCaptions(),
@@ -623,7 +604,6 @@ export class App {
         onPostSelected: (postId) => this.openDetail(postId),
         onSessionEnded: (expected) => this.handleArSessionEnded(expected),
       });
-      manager.setTextAnimationPaused(this.state.previewUi.textAnimationPaused);
       manager.setCaptionsVisible(this.state.previewUi.captionsVisible);
       this.xrSceneManager = manager;
     } catch (error: unknown) {
@@ -666,7 +646,7 @@ export class App {
       postCount: 0,
       arPlacementState: "loading",
       detailReturnMode: null,
-      previewUi: createInitialPreviewUiState(this.reducedMotionPreferred),
+      previewUi: createInitialPreviewUiState(),
       playingVideoId: null,
     };
     this.render();
@@ -693,7 +673,6 @@ export class App {
       onCloseSettings: () => this.updatePreviewUi({ type: "close-settings" }),
       onOpenInfo: () => this.updatePreviewUi({ type: "open-info" }),
       onCloseInfo: () => this.updatePreviewUi({ type: "close-info" }),
-      onToggleTextAnimation: () => this.toggleTextAnimation(),
       onStopVideos: () => this.fallbackView?.stopAllVideos(),
       onPlayingVideoChange: (postId) => this.handlePlayingVideoChange(postId),
       onToggleCaptions: () => this.toggleCaptions(),
@@ -721,9 +700,6 @@ export class App {
         onPlacementStateChange: (state, trackingMode) =>
           this.handleFallbackPlacementState(state, trackingMode),
       });
-      controller.setTextAnimationPaused(
-        this.state.previewUi.textAnimationPaused,
-      );
       controller.setCaptionsVisible(this.state.previewUi.captionsVisible);
       this.fallbackController = controller;
     } catch (error: unknown) {
@@ -806,19 +782,6 @@ export class App {
     };
     this.render();
     this.fallbackController?.setInteractionEnabled(true);
-  }
-
-  private toggleTextAnimation(): void {
-    this.updatePreviewUi({ type: "toggle-text-animation" });
-    this.sceneManager?.setTextAnimationPaused(
-      this.state.previewUi.textAnimationPaused,
-    );
-    this.xrSceneManager?.setTextAnimationPaused(
-      this.state.previewUi.textAnimationPaused,
-    );
-    this.fallbackController?.setTextAnimationPaused(
-      this.state.previewUi.textAnimationPaused,
-    );
   }
 
   private toggleCaptions(): void {
@@ -926,21 +889,6 @@ export class App {
     this.state = { ...this.state, playingVideoId: postId };
     this.updateDebugOverlay();
   }
-
-  private readonly handleReducedMotionChange = (
-    event: MediaQueryListEvent,
-  ): void => {
-    if (!event.matches || this.state.previewUi.textAnimationPaused) {
-      return;
-    }
-    this.updatePreviewUi({
-      type: "set-text-animation-paused",
-      paused: true,
-    });
-    this.sceneManager?.setTextAnimationPaused(true);
-    this.xrSceneManager?.setTextAnimationPaused(true);
-    this.fallbackController?.setTextAnimationPaused(true);
-  };
 
   private createDebugSnapshot() {
     return {

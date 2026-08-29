@@ -22,7 +22,6 @@ interface PreviewViewOptions {
   readonly onCloseSettings: () => void;
   readonly onOpenInfo: () => void;
   readonly onCloseInfo: () => void;
-  readonly onToggleTextAnimation: () => void;
   readonly onStopVideos: () => void;
   readonly onPlayingVideoChange?: (postId: string | null) => void;
   readonly onToggleCaptions: () => void;
@@ -123,7 +122,6 @@ export function renderPreviewView(
           <button class="icon-button" type="button" data-action="close-settings" aria-label="表示設定を閉じる">閉じる</button>
         </header>
         <div class="settings-actions">
-          <button class="settings-button" type="button" data-action="toggle-text"></button>
           <button class="settings-button" type="button" data-action="stop-videos">動画をすべて停止</button>
           <button class="settings-button" type="button" data-action="toggle-captions"></button>
           ${fourthSetting}
@@ -135,7 +133,7 @@ export function renderPreviewView(
           <p class="preview-label">ABOUT THE WORK</p>
           <h2 id="info-title">驚異の部屋-私のSNS コレクション- : SNS 投稿の展示空間上への再配置による鑑賞体験の考察</h2>
           <p>Xで「いいね」した投稿を、個人的なコレクションとして壁面へ再配置する作品です。</p>
-          <p>画像は額装作品、動画は映像展示、テキストは流れる言葉として、タイムラインとは異なる距離から眺められます。</p>
+          <p>画像は額装作品、動画は映像展示、テキストは言葉のパネルとして、タイムラインとは異なる距離から眺められます。</p>
           <button class="settings-button" type="button" data-action="close-info">作品説明を閉じる</button>
         </article>
       </section>
@@ -173,7 +171,6 @@ class DomPreviewViewController implements PreviewViewController {
   private readonly detailContent: HTMLElement;
   private readonly settingsPanel: HTMLElement;
   private readonly infoOverlay: HTMLElement;
-  private readonly toggleTextButton: HTMLButtonElement;
   private readonly toggleCaptionsButton: HTMLButtonElement;
   private readonly closeDetailButton: HTMLButtonElement;
   private readonly closeSettingsButton: HTMLButtonElement;
@@ -213,7 +210,6 @@ class DomPreviewViewController implements PreviewViewController {
     this.detailContent = requireElement(container, "[data-detail-content]");
     this.settingsPanel = requireElement(container, "[data-settings-panel]");
     this.infoOverlay = requireElement(container, "[data-info-overlay]");
-    this.toggleTextButton = requireElement(container, '[data-action="toggle-text"]');
     this.toggleCaptionsButton = requireElement(
       container,
       '[data-action="toggle-captions"]',
@@ -270,7 +266,6 @@ class DomPreviewViewController implements PreviewViewController {
     this.bindButton("close-settings", options.onCloseSettings);
     this.bindButton("info", options.onOpenInfo);
     this.bindButton("close-info", options.onCloseInfo);
-    this.bindButton("toggle-text", options.onToggleTextAnimation);
     this.bindButton("stop-videos", options.onStopVideos);
     this.bindButton("toggle-captions", options.onToggleCaptions);
     this.bindOptionalButton("reset-camera", options.onResetCamera);
@@ -372,13 +367,6 @@ class DomPreviewViewController implements PreviewViewController {
       restoreFocus(this.infoReturnFocus);
       this.infoReturnFocus = null;
     }
-    this.toggleTextButton.textContent = state.textAnimationPaused
-      ? "テキスト移動を再開"
-      : "テキスト移動を停止";
-    this.toggleTextButton.setAttribute(
-      "aria-pressed",
-      String(state.textAnimationPaused),
-    );
     this.toggleCaptionsButton.textContent = state.captionsVisible
       ? "キャプションを隠す"
       : "キャプションを表示";

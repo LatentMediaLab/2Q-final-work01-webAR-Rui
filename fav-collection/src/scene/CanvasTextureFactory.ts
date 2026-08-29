@@ -1,5 +1,9 @@
 import * as THREE from "three";
-import { createScrollingTextLines } from "./ScrollingTextMetrics";
+import {
+  createImagePostBodyLines,
+  IMAGE_POST_BODY_MAX_LINES,
+} from "./ImagePostBodyText";
+import { createTextPostLines } from "./ScrollingTextMetrics";
 
 const FONT_FAMILY =
   '"Hiragino Sans", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif';
@@ -74,46 +78,61 @@ export function createCaptionTexture(
   return createCanvasTexture(canvas);
 }
 
-export function createScrollingTextTexture(
-  authorHandle: string,
+export function createImagePostBodyTexture(text: string): THREE.CanvasTexture {
+  const canvas = document.createElement("canvas");
+  canvas.width = 768;
+  canvas.height = 320;
+  const context = getContext(canvas);
+  const lines = createImagePostBodyLines(text);
+  const horizontalPadding = 42;
+  const verticalPadding = 30;
+  const lineHeight =
+    (canvas.height - verticalPadding * 2) / IMAGE_POST_BODY_MAX_LINES;
+
+  context.fillStyle = "#f3eddf";
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  context.fillStyle = "#1c1a17";
+  context.textBaseline = "middle";
+  context.font = `500 32px ${FONT_FAMILY}`;
+
+  lines.forEach((line, index) => {
+    context.fillText(
+      line,
+      horizontalPadding,
+      verticalPadding + (index + 0.5) * lineHeight,
+      canvas.width - horizontalPadding * 2,
+    );
+  });
+
+  return createCanvasTexture(canvas);
+}
+
+export function createTextPostTexture(
+  authorName: string,
   text: string,
 ): THREE.CanvasTexture {
-  const lines = createScrollingTextLines(authorHandle, text);
+  const lines = createTextPostLines(authorName, text);
   const canvas = document.createElement("canvas");
   const measuringContext = getContext(canvas);
-  let fontSize = 26;
+  const authorFontSize = 28;
+  const bodyFontSize = 26;
   const horizontalPadding = 32;
   const verticalPadding = 40;
   const lineHeight = 40;
   const maximumWidth = 4_096;
   const minimumWidth = 640;
-  const maximumHeight = 2_048;
-
-  while (fontSize > 18) {
-    measuringContext.font = `600 ${fontSize}px ${FONT_FAMILY}`;
-    const widestLine = Math.max(
-      0,
-      ...lines.map((line) => measuringContext.measureText(line).width),
-    );
-    if (widestLine + horizontalPadding * 2 <= maximumWidth) {
-      break;
-    }
-    fontSize -= 1;
-  }
-
-  measuringContext.font = `600 ${fontSize}px ${FONT_FAMILY}`;
-  const measuredWidths = lines.map(
-    (line) => measuringContext.measureText(line).width,
-  );
+  const measuredWidths = lines.map((line, index) => {
+    measuringContext.font = `${index === 0 ? 700 : 500} ${
+      index === 0 ? authorFontSize : bodyFontSize
+    }px ${FONT_FAMILY}`;
+    return measuringContext.measureText(line).width;
+  });
   const measuredWidth = Math.max(0, ...measuredWidths);
   canvas.width = Math.min(
     maximumWidth,
     Math.max(minimumWidth, Math.ceil(measuredWidth + horizontalPadding * 2)),
   );
-  canvas.height = Math.min(
-    maximumHeight,
-    Math.max(80, lineHeight * lines.length + verticalPadding),
-  );
+  canvas.height = Math.max(80, lineHeight * lines.length + verticalPadding);
 
   const context = getContext(canvas);
   context.fillStyle = "rgba(255, 255, 255, 0.5)";
@@ -123,17 +142,13 @@ export function createScrollingTextTexture(
   context.strokeRect(3, 3, canvas.width - 6, canvas.height - 6);
   context.fillStyle = "#000000";
   context.textBaseline = "middle";
-  context.font = `600 ${fontSize}px ${FONT_FAMILY}`;
-
   const maximumTextWidth = canvas.width - horizontalPadding * 2;
-  const availableTextHeight = canvas.height - verticalPadding;
-  const renderedLineHeight = Math.min(
-    lineHeight,
-    availableTextHeight / Math.max(1, lines.length),
-  );
   lines.forEach((line, index) => {
     const lineWidth = measuredWidths[index] ?? 0;
-    const y = verticalPadding / 2 + (index + 0.5) * renderedLineHeight;
+    const y = verticalPadding / 2 + (index + 0.5) * lineHeight;
+    context.font = `${index === 0 ? 700 : 500} ${
+      index === 0 ? authorFontSize : bodyFontSize
+    }px ${FONT_FAMILY}`;
     if (lineWidth <= maximumTextWidth) {
       context.fillText(line, horizontalPadding, y);
       return;

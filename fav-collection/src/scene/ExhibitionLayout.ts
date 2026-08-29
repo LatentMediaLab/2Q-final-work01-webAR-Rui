@@ -4,13 +4,13 @@ import { createSeededRandom, hashStringToSeed } from "../utils/seededRandom";
 import {
   getViewCountRange,
   mapNormalizedViewToScale,
-  mapNormalizedViewToTextSpeed,
   normalizeViewCount,
 } from "../utils/viewCount";
 import {
-  getScrollingTextMetrics,
-  type ScrollingTextMetrics,
+  getTextPostMetrics,
+  type TextPostMetrics,
 } from "./ScrollingTextMetrics";
+import { hasImagePostBody } from "./ImagePostBodyText";
 
 export interface LayoutRectangle {
   readonly x: number;
@@ -25,9 +25,9 @@ export interface ExhibitionLayoutItem extends LayoutRectangle {
   readonly z: number;
   readonly contentWidth: number;
   readonly contentHeight: number;
+  readonly bodyHeight?: number;
   readonly normalizedViewCount: number;
   readonly scale: number;
-  readonly textSpeed: number;
   readonly rotationX: number;
   readonly rotationY: number;
   readonly rotationZ: number;
@@ -40,6 +40,7 @@ interface MutableDimensions {
   height: number;
   contentWidth: number;
   contentHeight: number;
+  bodyHeight: number;
 }
 
 interface RankedPost {
@@ -123,7 +124,7 @@ export function createExhibitionLayout(
   );
 
   const textLayouts = layoutTextPosts(textPosts);
-  const mediaLayouts = layoutMediaPosts(mediaPosts);
+  const mediaLayouts = layoutMediaPosts(mediaPosts, textLayouts);
   const layoutsByPostId = new Map(
     [...textLayouts, ...mediaLayouts].map((layout) => [layout.postId, layout]),
   );
@@ -168,7 +169,7 @@ function layoutTextPosts(posts: readonly RankedPost[]): ExhibitionLayoutItem[] {
   }
 
   const textMetrics = posts.map(({ post }) =>
-    getScrollingTextMetrics(post.authorHandle, post.text),
+    getTextPostMetrics(post.authorName, post.text),
   );
   const laneCount = getTextLaneCount(textMetrics);
   const laneHeights = getTextLaneHeights(textMetrics, laneCount);
@@ -188,8 +189,8 @@ function layoutTextPosts(posts: readonly RankedPost[]): ExhibitionLayoutItem[] {
     assignedPerLane.set(laneIndex, assignedIndex + 1);
 
     const metrics = textMetrics[index] ??
-      getScrollingTextMetrics(
-        rankedPost.post.authorHandle,
+      getTextPostMetrics(
+        rankedPost.post.authorName,
         rankedPost.post.text,
       );
     const panelWidth = metrics.width;
@@ -223,16 +224,13 @@ function layoutTextPosts(posts: readonly RankedPost[]): ExhibitionLayoutItem[] {
       contentHeight: metrics.height,
       normalizedViewCount: rankedPost.normalizedViewCount,
       scale: rankedPost.scale,
-      textSpeed: mapNormalizedViewToTextSpeed(
-        rankedPost.normalizedViewCount,
-      ),
       laneIndex,
     };
   });
 }
 
 function getTextLaneCount(
-  textMetrics: readonly ScrollingTextMetrics[],
+  textMetrics: readonly TextPostMetrics[],
 ): number {
   const maximumLaneCount = Math.min(
     APP_CONFIG.layout.textLaneCount,
@@ -255,7 +253,7 @@ function getTextLaneCount(
 }
 
 function getTextLaneHeights(
-  textMetrics: readonly ScrollingTextMetrics[],
+  textMetrics: readonly TextPostMetrics[],
   laneCount: number,
 ): number[] {
   const laneHeights = Array.from({ length: laneCount }, () => 0);
@@ -304,8 +302,10 @@ function getLaneCenters(laneHeights: readonly number[]): number[] {
 
 function layoutMediaPosts(
   posts: readonly RankedPost[],
+  initialOccupied: readonly LayoutRectangle[] = [],
 ): ExhibitionLayoutItem[] {
-  const occupied: LayoutRectangle[] = [];
+  const occupied: LayoutRectangle[] = [...initialOccupied];
+  const mediaOccupied: LayoutRectangle[] = [];
   const layouts: ExhibitionLayoutItem[] = [];
 
   for (const rankedPost of posts) {
@@ -322,6 +322,7 @@ function layoutMediaPosts(
       occupied,
       random,
       createClusterBias(seed, rankedPost.normalizedViewCount),
+      mediaOccupied,
     );
     const rectangle: LayoutRectangle = {
       x: candidate.position.x,
@@ -330,6 +331,7 @@ function layoutMediaPosts(
       height: candidate.dimensions.height,
     };
     occupied.push(rectangle);
+    mediaOccupied.push(rectangle);
     const pose = createDisplayPose(
       rankedPost.post.mediaType,
       rankedPost.normalizedViewCount,
@@ -343,11 +345,11 @@ function layoutMediaPosts(
       ...pose,
       contentWidth: candidate.dimensions.contentWidth,
       contentHeight: candidate.dimensions.contentHeight,
+      ...(candidate.dimensions.bodyHeight === 0
+        ? {}
+        : { bodyHeight: candidate.dimensions.bodyHeight }),
       normalizedViewCount: rankedPost.normalizedViewCount,
       scale: rankedPost.scale,
-      textSpeed: mapNormalizedViewToTextSpeed(
-        rankedPost.normalizedViewCount,
-      ),
     });
   }
 
@@ -378,13 +380,19 @@ function getMediaDimensions(
   );
   contentWidth *= fitScale;
   contentHeight *= fitScale;
+  const bodyHeight =
+    post.mediaType === "image" && hasImagePostBody(post.text)
+      ? APP_CONFIG.layout.imageBodyHeight * fitScale
+      : 0;
 
   return {
     contentWidth,
     contentHeight,
+    bodyHeight,
     width: contentWidth + APP_CONFIG.layout.frameMargin * 2,
     height:
       contentHeight +
+      bodyHeight +
       APP_CONFIG.layout.frameMargin * 2 +
       APP_CONFIG.layout.captionHeight,
   };
@@ -411,6 +419,7 @@ function findPlacement(
   occupied: readonly LayoutRectangle[],
   random: () => number,
   clusterBias: CandidatePosition,
+  protectedOccupied: readonly LayoutRectangle[] = occupied,
 ): { position: CandidatePosition; dimensions: MutableDimensions } {
   let dimensions = { ...initialDimensions };
 
@@ -449,6 +458,7 @@ function findPlacement(
       dimensions,
       normalizedViewCount,
       occupied,
+      protectedOccupied,
     ),
     dimensions,
   };
@@ -568,9 +578,11 @@ function findLowestOverlapPosition(
   dimensions: MutableDimensions,
   normalizedViewCount: number,
   occupied: readonly LayoutRectangle[],
+  protectedOccupied: readonly LayoutRectangle[] = occupied,
 ): CandidatePosition {
   const candidates = getGridCandidates(dimensions, normalizedViewCount);
   let bestPosition = candidates[0] ?? { x: 0, y: 0 };
+  let bestProtectedOverlap = Number.POSITIVE_INFINITY;
   let bestOverlap = Number.POSITIVE_INFINITY;
 
   for (const position of candidates) {
@@ -579,7 +591,15 @@ function findLowestOverlapPosition(
       (sum, other) => sum + getOverlapArea(rectangle, other),
       0,
     );
-    if (overlap < bestOverlap) {
+    const protectedOverlap = protectedOccupied.reduce(
+      (sum, other) => sum + getOverlapArea(rectangle, other),
+      0,
+    );
+    if (
+      protectedOverlap < bestProtectedOverlap ||
+      (protectedOverlap === bestProtectedOverlap && overlap < bestOverlap)
+    ) {
+      bestProtectedOverlap = protectedOverlap;
       bestOverlap = overlap;
       bestPosition = position;
     }
@@ -659,6 +679,7 @@ function scaleDimensions(
     height: dimensions.height * scale,
     contentWidth: dimensions.contentWidth * scale,
     contentHeight: dimensions.contentHeight * scale,
+    bodyHeight: dimensions.bodyHeight * scale,
   };
 }
 

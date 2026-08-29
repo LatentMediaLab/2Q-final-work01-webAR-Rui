@@ -11,10 +11,6 @@ export const APP_CONFIG = {
     min: 0.75,
     max: 1.3,
   },
-  textSpeed: {
-    min: 0.08,
-    max: 0.35,
-  },
   layout: {
     padding: 0.025,
     collisionPadding: 0.006,
@@ -24,7 +20,6 @@ export const APP_CONFIG = {
     textLaneCount: 6,
     textLineHeight: 0.065,
     textVerticalPadding: 0.065,
-    textPanelMaxHeight: 0.8,
     textPanelMinWidth: 1.05,
     textPanelMaxWidth: 6.4,
     textCharacterWidth: 0.042,
@@ -51,6 +46,7 @@ export const APP_CONFIG = {
     textMountDepthMax: 0.018,
     frameMargin: 0.015,
     captionHeight: 0.065,
+    imageBodyHeight: 0.16,
   },
   performance: {
     maxPosts: 90,

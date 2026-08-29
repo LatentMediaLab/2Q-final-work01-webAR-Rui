@@ -1,26 +1,31 @@
 import { APP_CONFIG } from "../app/config";
 
-export interface ScrollingTextMetrics {
+export const TEXT_POST_CHARACTERS_PER_LINE = 40;
+
+export interface TextPostMetrics {
   readonly lines: readonly string[];
   readonly width: number;
   readonly height: number;
 }
 
-export function createScrollingTextLines(
-  authorHandle: string,
+export function createTextPostLines(
+  authorName: string,
   text: string,
 ): string[] {
-  const lines = text.split(/\r\n|\r|\n/);
-  const contentLines = lines.length === 0 ? [""] : lines;
-  const firstLine = contentLines[0] ?? "";
-  return [`${authorHandle}\u3000${firstLine}`, ...contentLines.slice(1)];
+  const bodyLines = text
+    .replaceAll("\r\n", "\n")
+    .replaceAll("\r", "\n")
+    .split("\n")
+    .flatMap(wrapTextLine);
+
+  return [authorName, ...bodyLines];
 }
 
-export function getScrollingTextMetrics(
-  authorHandle: string,
+export function getTextPostMetrics(
+  authorName: string,
   text: string,
-): ScrollingTextMetrics {
-  const lines = createScrollingTextLines(authorHandle, text);
+): TextPostMetrics {
+  const lines = createTextPostLines(authorName, text);
   const longestLineUnits = Math.max(
     0,
     ...lines.map((line) => measureCharacterUnits(line)),
@@ -37,13 +42,29 @@ export function getScrollingTextMetrics(
       APP_CONFIG.layout.textPanelMinWidth,
       APP_CONFIG.layout.textPanelMaxWidth,
     ),
-    height: clamp(
-      textHeight,
-      APP_CONFIG.layout.textLineHeight +
-        APP_CONFIG.layout.textVerticalPadding,
-      APP_CONFIG.layout.textPanelMaxHeight,
-    ),
+    height: textHeight,
   };
+}
+
+function wrapTextLine(line: string): string[] {
+  const characters = Array.from(line);
+  if (characters.length === 0) {
+    return [""];
+  }
+
+  const lines: string[] = [];
+  for (
+    let index = 0;
+    index < characters.length;
+    index += TEXT_POST_CHARACTERS_PER_LINE
+  ) {
+    lines.push(
+      characters
+        .slice(index, index + TEXT_POST_CHARACTERS_PER_LINE)
+        .join(""),
+    );
+  }
+  return lines;
 }
 
 export function measureCharacterUnits(value: string): number {

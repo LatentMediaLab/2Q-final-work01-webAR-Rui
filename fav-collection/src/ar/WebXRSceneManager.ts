@@ -32,7 +32,6 @@ export class WebXRSceneManager {
   private session: XRSession | null = null;
   private referenceSpace: XRReferenceSpace | null = null;
   private placementState: ArPlacementState = "loading";
-  private lastFrameTime = performance.now();
   private disposed = false;
   private sessionEndRequested = false;
 
@@ -88,7 +87,6 @@ export class WebXRSceneManager {
     this.renderer.xr.setReferenceSpace(referenceSpace);
     this.referenceSpace = referenceSpace;
     await this.hitTest.initialize(session, referenceSpace);
-    this.lastFrameTime = performance.now();
     this.renderer.setAnimationLoop(this.renderFrame);
   }
 
@@ -103,10 +101,6 @@ export class WebXRSceneManager {
     this.setPlacementState(
       reduceArPlacementState(this.placementState, { type: "data-loaded" }),
     );
-  }
-
-  public setTextAnimationPaused(paused: boolean): void {
-    this.exhibition.setTextAnimationPaused(paused);
   }
 
   public setCaptionsVisible(visible: boolean): void {
@@ -166,11 +160,6 @@ export class WebXRSceneManager {
     if (this.disposed) {
       return;
     }
-
-    const now = performance.now();
-    const deltaSeconds = Math.min((now - this.lastFrameTime) / 1_000, 0.05);
-    this.lastFrameTime = now;
-    this.exhibition.update(deltaSeconds);
 
     if (this.placementState === "scanning" || this.placementState === "ready") {
       const pose = this.hitTest.update(frame);

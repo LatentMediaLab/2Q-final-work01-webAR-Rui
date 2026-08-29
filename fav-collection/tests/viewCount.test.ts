@@ -2,7 +2,6 @@ import { describe, expect, it } from "vitest";
 import { APP_CONFIG } from "../src/app/config";
 import {
   mapViewCountToScale,
-  mapViewCountToTextSpeed,
   normalizeViewCount,
 } from "../src/utils/viewCount";
 
@@ -19,15 +18,6 @@ describe("view count mapping", () => {
     expect(mapViewCountToScale(10, 10, 10_000)).toBe(APP_CONFIG.scale.min);
     expect(mapViewCountToScale(10_000, 10, 10_000)).toBe(
       APP_CONFIG.scale.max,
-    );
-  });
-
-  it("maps views to the configured text speed range", () => {
-    expect(mapViewCountToTextSpeed(10, 10, 10_000)).toBe(
-      APP_CONFIG.textSpeed.min,
-    );
-    expect(mapViewCountToTextSpeed(10_000, 10, 10_000)).toBe(
-      APP_CONFIG.textSpeed.max,
     );
   });
 

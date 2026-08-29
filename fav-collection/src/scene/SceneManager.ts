@@ -28,7 +28,6 @@ export class SceneManager {
   private readonly wallGeometry: THREE.PlaneGeometry;
   private readonly wallMaterial: THREE.MeshStandardMaterial;
   private readonly postRaycaster = new PostRaycaster();
-  private lastFrameTime = performance.now();
   private pointerStart: PointerStart | null = null;
   private disposed = false;
 
@@ -119,10 +118,6 @@ export class SceneManager {
     await this.exhibition.load(posts);
   }
 
-  public setTextAnimationPaused(paused: boolean): void {
-    this.exhibition.setTextAnimationPaused(paused);
-  }
-
   public setCaptionsVisible(visible: boolean): void {
     this.exhibition.setCaptionsVisible(visible);
   }
@@ -169,11 +164,7 @@ export class SceneManager {
   }
 
   private readonly renderFrame = (): void => {
-    const now = performance.now();
-    const deltaSeconds = Math.min((now - this.lastFrameTime) / 1_000, 0.05);
-    this.lastFrameTime = now;
     this.controls.update();
-    this.exhibition.update(deltaSeconds);
     this.renderer.render(this.scene, this.camera);
   };
 

@@ -1,7 +1,6 @@
 import * as THREE from "three";
-import { APP_CONFIG } from "../app/config";
 import type { PostRecord } from "../data/PostTypes";
-import { createScrollingTextTexture } from "./CanvasTextureFactory";
+import { createTextPostTexture } from "./CanvasTextureFactory";
 import type { ExhibitionLayoutItem } from "./ExhibitionLayout";
 import type { PostExhibit } from "./PostExhibit";
 import { disposeObject3D } from "./disposeObject3D";
@@ -10,12 +9,11 @@ import { createSeededRandom, hashStringToSeed } from "../utils/seededRandom";
 export class TextPostExhibit implements PostExhibit {
   public readonly group = new THREE.Group();
 
-  private animationPaused = false;
   private disposed = false;
 
   public constructor(
     post: PostRecord,
-    private readonly layout: ExhibitionLayoutItem,
+    layout: ExhibitionLayoutItem,
   ) {
     this.group.name = `text-post-${post.id}`;
     this.group.userData.postId = post.id;
@@ -49,7 +47,7 @@ export class TextPostExhibit implements PostExhibit {
     support.position.z = -layout.mountDepth / 2 - 0.003;
     this.group.add(support);
 
-    const texture = createScrollingTextTexture(post.authorHandle, post.text);
+    const texture = createTextPostTexture(post.authorName, post.text);
     const panel = new THREE.Mesh(
       new THREE.PlaneGeometry(layout.contentWidth, layout.contentHeight),
       new THREE.MeshBasicMaterial({
@@ -60,31 +58,13 @@ export class TextPostExhibit implements PostExhibit {
         depthTest: true,
       }),
     );
-    panel.name = "scrolling-text-surface";
+    panel.name = "text-post-surface";
     panel.position.z = 0.002;
     this.group.add(panel);
   }
 
   public async load(): Promise<void> {
     await Promise.resolve();
-  }
-
-  public update(deltaSeconds: number): void {
-    if (this.disposed || this.animationPaused) {
-      return;
-    }
-
-    this.group.position.x -= this.layout.textSpeed * deltaSeconds;
-    const exitX =
-      -APP_CONFIG.exhibition.width / 2 - this.layout.contentWidth / 2;
-    if (this.group.position.x < exitX) {
-      this.group.position.x =
-        APP_CONFIG.exhibition.width / 2 + this.layout.contentWidth / 2;
-    }
-  }
-
-  public setTextAnimationPaused(paused: boolean): void {
-    this.animationPaused = paused;
   }
 
   public setCaptionsVisible(): void {}

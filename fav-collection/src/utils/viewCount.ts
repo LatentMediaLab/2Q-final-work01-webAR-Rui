@@ -58,24 +58,6 @@ export function mapViewCountToScale(
   );
 }
 
-export function mapNormalizedViewToTextSpeed(normalized: number): number {
-  return interpolateClamped(
-    normalized,
-    APP_CONFIG.textSpeed.min,
-    APP_CONFIG.textSpeed.max,
-  );
-}
-
-export function mapViewCountToTextSpeed(
-  viewCount: number,
-  minViewCount: number,
-  maxViewCount: number,
-): number {
-  return mapNormalizedViewToTextSpeed(
-    normalizeViewCount(viewCount, minViewCount, maxViewCount),
-  );
-}
-
 function interpolateClamped(
   normalized: number,
   minimum: number,

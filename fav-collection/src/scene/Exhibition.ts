@@ -14,7 +14,6 @@ export class Exhibition {
   private readonly objects: PostExhibit[] = [];
   private loadVersion = 0;
   private disposed = false;
-  private textAnimationPaused = false;
   private captionsVisible = true;
 
   public constructor() {
@@ -41,7 +40,6 @@ export class Exhibition {
       }
 
       const object = createPostExhibit(post, layout);
-      object.setTextAnimationPaused(this.textAnimationPaused);
       object.setCaptionsVisible(this.captionsVisible);
       this.objects.push(object);
       this.group.add(object.group);
@@ -58,22 +56,8 @@ export class Exhibition {
     }
   }
 
-  public update(deltaSeconds: number): void {
-    if (this.disposed) {
-      return;
-    }
-    this.objects.forEach((object) => object.update(deltaSeconds));
-  }
-
   public setVisible(visible: boolean): void {
     this.group.visible = visible;
-  }
-
-  public setTextAnimationPaused(paused: boolean): void {
-    this.textAnimationPaused = paused;
-    this.objects.forEach((object) => {
-      object.setTextAnimationPaused(paused);
-    });
   }
 
   public setCaptionsVisible(visible: boolean): void {
