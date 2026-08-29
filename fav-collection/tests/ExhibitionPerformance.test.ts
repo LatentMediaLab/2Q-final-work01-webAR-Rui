@@ -4,14 +4,14 @@ import { limitExhibitionPosts } from "../src/scene/Exhibition";
 import { createExhibitionLayout } from "../src/scene/ExhibitionLayout";
 
 describe("exhibition post-count stability", () => {
-  it.each([0, 1, 30, 50, 90])("creates a layout for %i posts", (count) => {
+  it.each([0, 1, 10, 20, 35, 40, 50])("creates a layout for %i posts", (count) => {
     const posts = createPosts(count);
     expect(createExhibitionLayout(posts)).toHaveLength(count);
   });
 
-  it("limits inputs beyond the supported 90 posts", () => {
+  it("limits inputs beyond the supported 50 posts", () => {
     const warning = vi.spyOn(console, "warn").mockImplementation(() => undefined);
-    expect(limitExhibitionPosts(createPosts(100))).toHaveLength(90);
+    expect(limitExhibitionPosts(createPosts(100))).toHaveLength(50);
     expect(warning).toHaveBeenCalledOnce();
     warning.mockRestore();
   });

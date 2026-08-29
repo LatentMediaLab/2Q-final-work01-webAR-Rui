@@ -13,6 +13,12 @@ import {
 import { readPostsDataUrl } from "./readPostsDataUrl";
 import { readRequestedMode } from "./readRequestedMode";
 import { readDebugEnabled } from "./readDebugEnabled";
+import {
+  readDisplayPostCount,
+  selectPostsForDisplay,
+  sortPostsOldestFirst,
+  type DisplayPostCount,
+} from "./readDisplayPostCount";
 import type { ArPlacementState } from "../ar/ArState";
 import {
   canUseCameraFallback,
@@ -86,6 +92,7 @@ export class App {
   private loadRequestId = 0;
   private supportRequestId = 0;
   private readonly postRepository: PostRepository;
+  private readonly displayPostCount: DisplayPostCount;
   private readonly debugOverlay: DebugOverlay | null;
 
   public constructor(
@@ -95,6 +102,7 @@ export class App {
   ) {
     this.postRepository =
       postRepository ?? createDefaultRepository(readPostsDataUrl(locationSearch));
+    this.displayPostCount = readDisplayPostCount(locationSearch);
     this.state = {
       mode: "boot",
       requestedMode: readRequestedMode(locationSearch),
@@ -146,7 +154,11 @@ export class App {
     this.transitionTo("loading", { error: null, notice: null });
 
     try {
-      const posts = await this.postRepository.getPosts();
+      const loadedPosts = await this.postRepository.getPosts();
+      const posts = selectPostsForDisplay(
+        sortPostsOldestFirst(loadedPosts),
+        this.displayPostCount,
+      );
       if (requestId !== this.loadRequestId) {
         return;
       }
@@ -413,7 +425,11 @@ export class App {
       }
       await manager.startSession(session);
       startStage = "data";
-      const posts = await this.postRepository.getPosts();
+      const loadedPosts = await this.postRepository.getPosts();
+      const posts = selectPostsForDisplay(
+        sortPostsOldestFirst(loadedPosts),
+        this.displayPostCount,
+      );
       if (requestId !== this.loadRequestId) {
         await manager.endSession();
         return;
@@ -547,12 +563,16 @@ export class App {
       return;
     }
 
-    this.posts = posts.posts;
-    this.state = { ...this.state, postCount: posts.posts.length };
-    view.updatePostCount(posts.posts.length);
+    const displayPosts = selectPostsForDisplay(
+      sortPostsOldestFirst(posts.posts),
+      this.displayPostCount,
+    );
+    this.posts = displayPosts;
+    this.state = { ...this.state, postCount: displayPosts.length };
+    view.updatePostCount(displayPosts.length);
     this.updateDebugOverlay();
     try {
-      await controller.load(posts.posts);
+      await controller.load(displayPosts);
     } catch (error: unknown) {
       console.error("[Fav Collection] 簡易AR展示を生成できませんでした。", error);
       this.showError(

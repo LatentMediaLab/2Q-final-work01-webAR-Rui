@@ -6,6 +6,7 @@ import {
   isRectangleInsideExhibition,
   rectanglesOverlap,
 } from "../src/scene/ExhibitionLayout";
+import { getTextPostMetrics } from "../src/scene/ScrollingTextMetrics";
 
 function createPost(
   id: string,
@@ -71,16 +72,14 @@ describe("ExhibitionLayout", () => {
     });
   });
 
-  it("places text lanes above and below the exhibition center", () => {
+  it("distributes text posts above and below the exhibition center", () => {
     const textLayouts = createExhibitionLayout(createPosts()).filter(
       (item) => item.mediaType === "text",
     );
 
     expect(textLayouts.some((item) => item.y > 0)).toBe(true);
     expect(textLayouts.some((item) => item.y < 0)).toBe(true);
-    textLayouts.forEach((item) => {
-      expect(Math.abs(item.y)).toBeGreaterThanOrEqual(item.height / 2);
-    });
+    expect(new Set(textLayouts.map((item) => item.x.toFixed(3))).size).toBeGreaterThan(1);
   });
 
   it("avoids collisions between text and media when space is available", () => {
@@ -102,14 +101,15 @@ describe("ExhibitionLayout", () => {
     });
   });
 
-  it("places text surfaces behind every image and video exhibit", () => {
+  it("mixes text and media across the shared depth range", () => {
     const layout = createExhibitionLayout(createPosts());
     const textLayouts = layout.filter((item) => item.mediaType === "text");
     const mediaLayouts = layout.filter((item) => item.mediaType !== "text");
-    const nearestTextDepth = Math.max(...textLayouts.map((item) => item.z));
-    const furthestMediaDepth = Math.min(...mediaLayouts.map((item) => item.z));
+    const textDepths = textLayouts.map((item) => item.z);
+    const mediaDepths = mediaLayouts.map((item) => item.z);
 
-    expect(nearestTextDepth).toBeLessThan(furthestMediaDepth);
+    expect(Math.max(...textDepths)).toBeGreaterThan(Math.min(...mediaDepths));
+    expect(Math.min(...textDepths)).toBeLessThan(Math.max(...mediaDepths));
   });
 
   it("handles posts whose view counts are all equal", () => {
@@ -179,15 +179,17 @@ describe("ExhibitionLayout", () => {
     ).toBeGreaterThan(4);
   });
 
-  it("assigns available text posts to separate lanes before reusing a lane", () => {
-    const posts = Array.from({ length: 5 }, (_unused, index) =>
-      createPost(`lane-${index}`, "text", 100),
-    );
-    const laneIndexes = createExhibitionLayout(posts).map(
-      (item) => item.laneIndex,
-    );
+  it("scales text post surfaces to 90 percent", () => {
+    const post = createPost("scaled-text", "text", 100);
+    const metrics = getTextPostMetrics(post.authorName, post.text);
+    const layout = createExhibitionLayout([post])[0];
 
-    expect(new Set(laneIndexes).size).toBe(5);
+    expect(layout?.contentWidth).toBeCloseTo(
+      metrics.width * APP_CONFIG.layout.textPostScale,
+    );
+    expect(layout?.contentHeight).toBeCloseTo(
+      metrics.height * APP_CONFIG.layout.textPostScale,
+    );
   });
 
   it("sizes text panels from their longest wrapped line", () => {

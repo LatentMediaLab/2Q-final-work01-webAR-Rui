@@ -6,10 +6,7 @@ import {
   mapNormalizedViewToScale,
   normalizeViewCount,
 } from "../utils/viewCount";
-import {
-  getTextPostMetrics,
-  type TextPostMetrics,
-} from "./ScrollingTextMetrics";
+import { getTextPostMetrics } from "./ScrollingTextMetrics";
 import { hasImagePostBody } from "./ImagePostBodyText";
 
 export interface LayoutRectangle {
@@ -114,25 +111,36 @@ export function createExhibitionLayout(
     };
   });
 
-  const textPosts = rankedPosts.filter(({ post }) => post.mediaType === "text");
-  const mediaPosts = rankedPosts
-    .filter(({ post }) => post.mediaType !== "text")
-    .sort(
-      (first, second) =>
-        second.viewCount - first.viewCount ||
-        first.post.id.localeCompare(second.post.id),
-  );
-
-  const textLayouts = layoutTextPosts(textPosts);
-  const mediaLayouts = layoutMediaPosts(mediaPosts, textLayouts);
+  const mixedLayouts = layoutMixedPosts(interleavePostTypes(rankedPosts));
   const layoutsByPostId = new Map(
-    [...textLayouts, ...mediaLayouts].map((layout) => [layout.postId, layout]),
+    mixedLayouts.map((layout) => [layout.postId, layout]),
   );
 
   return posts.flatMap((post) => {
     const layout = layoutsByPostId.get(post.id);
     return layout === undefined ? [] : [layout];
   });
+}
+
+function interleavePostTypes(posts: readonly RankedPost[]): RankedPost[] {
+  const textPosts = posts.filter(({ post }) => post.mediaType === "text");
+  const mediaPosts = posts.filter(({ post }) => post.mediaType !== "text");
+  const mixed: RankedPost[] = [];
+  let textIndex = 0;
+  let mediaIndex = 0;
+  let useText = posts[0]?.post.mediaType === "text";
+
+  while (textIndex < textPosts.length || mediaIndex < mediaPosts.length) {
+    const next = useText
+      ? textPosts[textIndex++] ?? mediaPosts[mediaIndex++]
+      : mediaPosts[mediaIndex++] ?? textPosts[textIndex++];
+    if (next !== undefined) {
+      mixed.push(next);
+    }
+    useText = !useText;
+  }
+
+  return mixed;
 }
 
 function completeViewCounts(posts: readonly PostRecord[]): Map<string, number> {
@@ -163,154 +171,15 @@ function calculateMedian(values: readonly number[]): number {
   return ((sorted[middle - 1] ?? 0) + (sorted[middle] ?? 0)) / 2;
 }
 
-function layoutTextPosts(posts: readonly RankedPost[]): ExhibitionLayoutItem[] {
-  if (posts.length === 0) {
-    return [];
-  }
-
-  const textMetrics = posts.map(({ post }) =>
-    getTextPostMetrics(post.authorName, post.text),
-  );
-  const laneCount = getTextLaneCount(textMetrics);
-  const laneHeights = getTextLaneHeights(textMetrics, laneCount);
-  const laneCenters = getLaneCenters(laneHeights);
-  const postsPerLane = new Map<number, number>();
-  const assignedPerLane = new Map<number, number>();
-
-  posts.forEach((_post, index) => {
-    const laneIndex = index % laneCount;
-    postsPerLane.set(laneIndex, (postsPerLane.get(laneIndex) ?? 0) + 1);
-  });
-
-  return posts.map((rankedPost, index) => {
-    const laneIndex = index % laneCount;
-    const assignedIndex = assignedPerLane.get(laneIndex) ?? 0;
-    const lanePostCount = postsPerLane.get(laneIndex) ?? 1;
-    assignedPerLane.set(laneIndex, assignedIndex + 1);
-
-    const metrics = textMetrics[index] ??
-      getTextPostMetrics(
-        rankedPost.post.authorName,
-        rankedPost.post.text,
-      );
-    const panelWidth = metrics.width;
-    const usableWidth = Math.max(
-      0,
-      APP_CONFIG.exhibition.width -
-        Math.min(panelWidth, APP_CONFIG.exhibition.width) -
-        APP_CONFIG.layout.padding * 2,
-    );
-    const x =
-      lanePostCount === 1
-        ? 0
-        : -usableWidth / 2 +
-          (usableWidth * assignedIndex) / Math.max(1, lanePostCount - 1);
-    const seed = getPostSeed(rankedPost.post);
-    const pose = createDisplayPose(
-      "text",
-      rankedPost.normalizedViewCount,
-      seed,
-    );
-
-    return {
-      postId: rankedPost.post.id,
-      mediaType: "text",
-      x,
-      y: laneCenters[laneIndex] ?? 0,
-      ...pose,
-      width: panelWidth,
-      height: metrics.height,
-      contentWidth: panelWidth,
-      contentHeight: metrics.height,
-      normalizedViewCount: rankedPost.normalizedViewCount,
-      scale: rankedPost.scale,
-      laneIndex,
-    };
-  });
-}
-
-function getTextLaneCount(
-  textMetrics: readonly TextPostMetrics[],
-): number {
-  const maximumLaneCount = Math.min(
-    APP_CONFIG.layout.textLaneCount,
-    textMetrics.length,
-  );
-  const availableHeight =
-    APP_CONFIG.exhibition.height - APP_CONFIG.layout.padding * 2;
-
-  for (let laneCount = maximumLaneCount; laneCount > 1; laneCount -= 1) {
-    const laneHeights = getTextLaneHeights(textMetrics, laneCount);
-    const occupiedHeight =
-      laneHeights.reduce((total, height) => total + height, 0) +
-      APP_CONFIG.layout.padding * (laneCount - 1);
-    if (occupiedHeight <= availableHeight) {
-      return laneCount;
-    }
-  }
-
-  return 1;
-}
-
-function getTextLaneHeights(
-  textMetrics: readonly TextPostMetrics[],
-  laneCount: number,
-): number[] {
-  const laneHeights = Array.from({ length: laneCount }, () => 0);
-  textMetrics.forEach((metrics, index) => {
-    const laneIndex = index % laneCount;
-    laneHeights[laneIndex] = Math.max(
-      laneHeights[laneIndex] ?? 0,
-      metrics.height,
-    );
-  });
-  return laneHeights;
-}
-
-function getLaneCenters(laneHeights: readonly number[]): number[] {
-  if (laneHeights.length === 0) {
-    return [];
-  }
-
-  const centers = Array.from({ length: laneHeights.length }, () => 0);
-  const sortedLaneIndexes = laneHeights
-    .map((_height, index) => index)
-    .sort(
-      (first, second) =>
-        (laneHeights[second] ?? 0) - (laneHeights[first] ?? 0) ||
-        first - second,
-    );
-  const edge =
-    APP_CONFIG.exhibition.height / 2 - APP_CONFIG.layout.padding;
-  let topUsedHeight = 0;
-  let bottomUsedHeight = 0;
-
-  sortedLaneIndexes.forEach((laneIndex) => {
-    const height = laneHeights[laneIndex] ?? 0;
-    if (topUsedHeight <= bottomUsedHeight) {
-      centers[laneIndex] = edge - topUsedHeight - height / 2;
-      topUsedHeight += height + APP_CONFIG.layout.padding;
-      return;
-    }
-
-    centers[laneIndex] = -edge + bottomUsedHeight + height / 2;
-    bottomUsedHeight += height + APP_CONFIG.layout.padding;
-  });
-
-  return centers;
-}
-
-function layoutMediaPosts(
+function layoutMixedPosts(
   posts: readonly RankedPost[],
-  initialOccupied: readonly LayoutRectangle[] = [],
 ): ExhibitionLayoutItem[] {
-  const occupied: LayoutRectangle[] = [...initialOccupied];
-  const mediaOccupied: LayoutRectangle[] = [];
+  const occupied: LayoutRectangle[] = [];
   const layouts: ExhibitionLayoutItem[] = [];
 
   for (const rankedPost of posts) {
     const seed = getPostSeed(rankedPost.post);
-    const dimensions = getMediaDimensions(
+    const dimensions = getPostDimensions(
       rankedPost.post,
       rankedPost.scale,
       seed,
@@ -322,7 +191,6 @@ function layoutMediaPosts(
       occupied,
       random,
       createClusterBias(seed, rankedPost.normalizedViewCount),
-      mediaOccupied,
     );
     const rectangle: LayoutRectangle = {
       x: candidate.position.x,
@@ -331,7 +199,6 @@ function layoutMediaPosts(
       height: candidate.dimensions.height,
     };
     occupied.push(rectangle);
-    mediaOccupied.push(rectangle);
     const pose = createDisplayPose(
       rankedPost.post.mediaType,
       rankedPost.normalizedViewCount,
@@ -354,6 +221,26 @@ function layoutMediaPosts(
   }
 
   return layouts;
+}
+
+function getPostDimensions(
+  post: PostRecord,
+  scale: number,
+  seed: number,
+): MutableDimensions {
+  if (post.mediaType !== "text") {
+    return getMediaDimensions(post, scale, seed);
+  }
+
+  const metrics = getTextPostMetrics(post.authorName, post.text);
+  const textScale = APP_CONFIG.layout.textPostScale;
+  return {
+    width: metrics.width * textScale,
+    height: metrics.height * textScale,
+    contentWidth: metrics.width * textScale,
+    contentHeight: metrics.height * textScale,
+    bodyHeight: 0,
+  };
 }
 
 function getMediaDimensions(
@@ -541,10 +428,8 @@ function createDisplayPose(
 
   return {
     z:
-      mediaType === "text"
-        ? APP_CONFIG.exhibition.wallOffset
-        : APP_CONFIG.exhibition.wallOffset +
-          depthRatio * APP_CONFIG.exhibition.maxDepthOffset,
+      APP_CONFIG.exhibition.wallOffset +
+      depthRatio * APP_CONFIG.exhibition.maxDepthOffset,
     rotationX: centeredRandom(random) * degreesToRadians(tilt.x),
     rotationY: centeredRandom(random) * degreesToRadians(tilt.y),
     rotationZ: centeredRandom(random) * degreesToRadians(tilt.z),

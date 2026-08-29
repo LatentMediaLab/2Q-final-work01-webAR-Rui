@@ -2,8 +2,8 @@ import { resolvePublicUrl } from "../utils/publicUrl";
 
 export const APP_CONFIG = {
   exhibition: {
-    width: 3.0,
-    height: 2.0,
+    width: 3.6,
+    height: 2.4,
     wallOffset: 0.02,
     maxDepthOffset: 0.28,
   },
@@ -13,7 +13,7 @@ export const APP_CONFIG = {
   },
   layout: {
     padding: 0.025,
-    collisionPadding: 0.006,
+    collisionPadding: 0.012,
     maxPlacementAttempts: 100,
     fallbackGridStep: 0.035,
     globalSeed: 202607,
@@ -24,6 +24,7 @@ export const APP_CONFIG = {
     textPanelMaxWidth: 6.4,
     textCharacterWidth: 0.042,
     textHorizontalPadding: 0.1,
+    textPostScale: 0.9,
     mediaBaseSize: 0.28,
     mediaMaxWidth: 0.64,
     mediaMaxHeight: 0.54,
@@ -49,7 +50,9 @@ export const APP_CONFIG = {
     imageBodyHeight: 0.16,
   },
   performance: {
-    maxPosts: 90,
+    displayPostCounts: [10, 20, 35, 40, 50] as const,
+    defaultDisplayPosts: 35,
+    maxPosts: 50,
     maxActiveVideos: 1,
     preloadConcurrency: 4,
     maxPixelRatio: 1.5,
@@ -69,7 +72,7 @@ export const APP_CONFIG = {
     cameraFov: 45,
     cameraNear: 0.1,
     cameraFar: 100,
-    cameraDistance: 2.2,
+    cameraDistance: 2.65,
   },
   ar: {
     wallOffset: 0.025,
@@ -77,7 +80,7 @@ export const APP_CONFIG = {
     cameraFar: 100,
   },
   fallback: {
-    cameraDistance: 2.0,
+    cameraDistance: 2.4,
     defaultScale: 1.1,
     minScale: 0.65,
     maxScale: 2.2,
@@ -90,6 +93,7 @@ export const APP_CONFIG = {
     modeParameter: "mode",
     previewValue: "preview",
     dataParameter: "data",
+    countParameter: "count",
     placeholderDataValue: "placeholder",
     sampleDataValue: "sample",
     customDataValue: "custom",
