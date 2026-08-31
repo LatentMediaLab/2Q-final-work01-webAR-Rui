@@ -573,8 +573,8 @@ h1 {
   width: fit-content;
   margin: 0 auto;
   padding: 0.35rem 0.55rem;
-  color: rgb(var(--color-accent-rgb) / 84%);
-  background: rgb(var(--color-sub-rgb) / 46%);
+  color: rgb(var(--color-sub-rgb) / 84%);
+  background: rgb(var(--color-accent-rgb) / 70%);
   font-size: 0.68rem;
   text-align: center;
 }
