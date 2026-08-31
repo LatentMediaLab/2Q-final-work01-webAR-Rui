@@ -25,7 +25,7 @@ export class TextPostExhibit implements PostExhibit {
     );
 
     const random = createSeededRandom(hashStringToSeed(post.id) ^ 0x27d4eb2d);
-    const supportPalette = [0xddd4c3, 0xb9c1bc, 0xc9b9a9] as const;
+    const supportPalette = [0xe6e5ef, 0xced7dc, 0x00213b] as const;
     const supportColor =
       supportPalette[Math.floor(random() * supportPalette.length)] ??
       supportPalette[0];

@@ -24,26 +24,26 @@ export function createFrame(
 
   switch (variant) {
     case "brass":
-      addBars(group, width, height, 0.01, 0xc4a65a, 0.012, 0.28, 0.72);
+      addBars(group, width, height, 0.01, 0x00213b, 0.012, 0.28, 0.72);
       addBars(
         group,
         width + 0.022,
         height + 0.022,
         0.004,
-        0x6f5a2c,
+        0xced7dc,
         0.009,
         0.42,
         0.58,
       );
       break;
     case "wood":
-      addBars(group, width, height, 0.017, 0x5d3423, 0.016, 0.9, 0.02);
+      addBars(group, width, height, 0.017, 0x00213b, 0.016, 0.9, 0.02);
       addBars(
         group,
         width - 0.012,
         height - 0.012,
         0.004,
-        0xc09a62,
+        0xe6e5ef,
         0.019,
         0.72,
         0.04,
@@ -53,7 +53,7 @@ export function createFrame(
       const backing = new THREE.Mesh(
         new THREE.PlaneGeometry(width + 0.028, height + 0.028),
         getSharedMaterial("floating-backing", {
-          color: 0xe8dfca,
+          color: 0xe6e5ef,
           roughness: 0.45,
           metalness: 0.08,
           transparent: true,
@@ -67,7 +67,7 @@ export function createFrame(
         width + 0.014,
         height + 0.014,
         0.0035,
-        0x384449,
+        0x00213b,
         0.01,
         0.34,
         0.48,
@@ -89,9 +89,9 @@ export function createMountingSupport(
     FrameVariant,
     { readonly color: number; readonly roughness: number; readonly metalness: number }
   > = {
-    brass: { color: 0x5b4930, roughness: 0.52, metalness: 0.42 },
-    wood: { color: 0x362219, roughness: 0.92, metalness: 0.01 },
-    floating: { color: 0xb9c4c4, roughness: 0.4, metalness: 0.24 },
+    brass: { color: 0x00213b, roughness: 0.52, metalness: 0.42 },
+    wood: { color: 0x00213b, roughness: 0.92, metalness: 0.01 },
+    floating: { color: 0xced7dc, roughness: 0.4, metalness: 0.24 },
   };
   const appearance = appearances[variant];
   const support = new THREE.Mesh(

@@ -21,10 +21,10 @@ export function renderIntroView(
   container.innerHTML = `
     <main class="intro-shell">
       <section class="intro-card" aria-labelledby="app-title">
-        <p class="eyebrow">A PERSONAL WUNDERKAMMER</p>
-        <h1 id="app-title">驚異の部屋-私のSNS コレクション- : SNS 投稿の展示空間上への再配置による鑑賞体験の考察</h1>
+        <p class="eyebrow">Fuv-collection</p>
+        <h1 id="app-title">驚異の部屋 </br> -私のSNS コレクション-</h1>
         <p class="description">
-          -
+          SNS 投稿の展示空間上への再配置による鑑賞体験の考察
         </p>
         <p class="safety-notice">周囲を確認し、歩きながら画面だけを見続けないでください。</p>
         ${previewRequestMessage}

@@ -13,7 +13,7 @@ export class Reticle {
 
     const ringGeometry = new THREE.RingGeometry(0.055, 0.072, 40);
     const ringMaterial = new THREE.MeshBasicMaterial({
-      color: 0xffdf9c,
+      color: 0x00213b,
       side: THREE.DoubleSide,
       depthTest: false,
       transparent: true,
@@ -36,7 +36,7 @@ export class Reticle {
       new THREE.Vector3(0, 0.095, 0.001),
     ]);
     const lineMaterial = new THREE.LineBasicMaterial({
-      color: 0xffffff,
+      color: 0xe6e5ef,
       depthTest: false,
       transparent: true,
       opacity: 0.95,

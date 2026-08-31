@@ -62,8 +62,8 @@ export class WebXRSceneManager {
     this.renderer.xr.setReferenceSpaceType("local");
     this.container.append(this.renderer.domElement);
 
-    const hemisphereLight = new THREE.HemisphereLight(0xfff6df, 0x302b24, 1.8);
-    const directionalLight = new THREE.DirectionalLight(0xffecd0, 1.25);
+    const hemisphereLight = new THREE.HemisphereLight(0xe6e5ef, 0x00213b, 1.8);
+    const directionalLight = new THREE.DirectionalLight(0xe6e5ef, 1.25);
     directionalLight.position.set(1.8, 2.4, 3.5);
     this.scene.add(hemisphereLight, directionalLight);
 

@@ -36,7 +36,7 @@ export class SceneManager {
     private readonly options: SceneManagerOptions,
   ) {
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x151411);
+    this.scene.background = new THREE.Color(0xe6e5ef);
 
     const { width, height } = this.getViewportSize();
     this.camera = new THREE.PerspectiveCamera(
@@ -74,10 +74,10 @@ export class SceneManager {
     this.controls.maxDistance = 8;
     this.controls.update();
 
-    const hemisphereLight = new THREE.HemisphereLight(0xfff6df, 0x302b24, 1.8);
+    const hemisphereLight = new THREE.HemisphereLight(0xe6e5ef, 0x00213b, 1.8);
     this.scene.add(hemisphereLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffecd0, 1.25);
+    const directionalLight = new THREE.DirectionalLight(0xe6e5ef, 1.25);
     directionalLight.position.set(1.8, 2.4, 3.5);
     this.scene.add(directionalLight);
 
@@ -86,7 +86,7 @@ export class SceneManager {
       APP_CONFIG.exhibition.height + 6,
     );
     this.wallMaterial = new THREE.MeshStandardMaterial({
-      color: 0xcac2b1,
+      color: 0xced7dc,
       roughness: 0.94,
       metalness: 0,
     });

@@ -21,7 +21,7 @@ export class VideoPostExhibit extends BaseFramedPostExhibit {
     const circle = new THREE.Mesh(
       new THREE.CircleGeometry(radius, 32),
       new THREE.MeshBasicMaterial({
-        color: 0x111111,
+        color: 0x00213b,
         transparent: true,
         opacity: 0.56,
         depthWrite: false,
@@ -39,7 +39,7 @@ export class VideoPostExhibit extends BaseFramedPostExhibit {
     const triangle = new THREE.Mesh(
       new THREE.ShapeGeometry(triangleShape),
       new THREE.MeshBasicMaterial({
-        color: 0xf7f0df,
+        color: 0xe6e5ef,
         transparent: true,
         opacity: 0.9,
         depthWrite: false,

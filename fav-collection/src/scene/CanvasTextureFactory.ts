@@ -21,12 +21,12 @@ export function createFallbackTexture(label: string): THREE.CanvasTexture {
   const context = getContext(canvas);
 
   const gradient = context.createLinearGradient(0, 0, canvas.width, canvas.height);
-  gradient.addColorStop(0, "#282724");
-  gradient.addColorStop(1, "#575148");
+  gradient.addColorStop(0, "#e6e5ef");
+  gradient.addColorStop(1, "#ced7dc");
   context.fillStyle = gradient;
   context.fillRect(0, 0, canvas.width, canvas.height);
 
-  context.strokeStyle = "rgba(232, 219, 188, 0.22)";
+  context.strokeStyle = "rgba(0, 33, 59, 0.22)";
   context.lineWidth = 5;
   for (let offset = -canvas.height; offset < canvas.width; offset += 42) {
     context.beginPath();
@@ -35,10 +35,10 @@ export function createFallbackTexture(label: string): THREE.CanvasTexture {
     context.stroke();
   }
 
-  context.strokeStyle = "#d7c79f";
+  context.strokeStyle = "#00213b";
   context.lineWidth = 6;
   context.strokeRect(24, 24, canvas.width - 48, canvas.height - 48);
-  context.fillStyle = "#f6edd6";
+  context.fillStyle = "#00213b";
   context.textAlign = "center";
   context.textBaseline = "middle";
   context.font = `700 36px ${FONT_FAMILY}`;
@@ -60,15 +60,15 @@ export function createCaptionTexture(
   canvas.width = 512;
   canvas.height = 64;
   const context = getContext(canvas);
-  context.fillStyle = "rgba(22, 21, 19, 0.92)";
+  context.fillStyle = "rgba(0, 33, 59, 0.92)";
   context.fillRect(0, 0, canvas.width, canvas.height);
-  context.fillStyle = "#f4ead4";
+  context.fillStyle = "#e6e5ef";
   context.textBaseline = "middle";
   context.font = `600 21px ${FONT_FAMILY}`;
   context.fillText(authorHandle, 18, canvas.height / 2);
   context.textAlign = "right";
   context.font = `400 16px ${FONT_FAMILY}`;
-  context.fillStyle = "#c8b995";
+  context.fillStyle = "#ced7dc";
   context.fillText(
     `${formatCount(viewCount ?? 0)} views`,
     canvas.width - 18,
@@ -89,9 +89,9 @@ export function createImagePostBodyTexture(text: string): THREE.CanvasTexture {
   const lineHeight =
     (canvas.height - verticalPadding * 2) / IMAGE_POST_BODY_MAX_LINES;
 
-  context.fillStyle = "#f3eddf";
+  context.fillStyle = "#e6e5ef";
   context.fillRect(0, 0, canvas.width, canvas.height);
-  context.fillStyle = "#1c1a17";
+  context.fillStyle = "#00213b";
   context.textBaseline = "middle";
   context.font = `500 32px ${FONT_FAMILY}`;
 
@@ -135,12 +135,12 @@ export function createTextPostTexture(
   canvas.height = Math.max(80, lineHeight * lines.length + verticalPadding);
 
   const context = getContext(canvas);
-  context.fillStyle = "rgba(255, 255, 255, 0.5)";
+  context.fillStyle = "rgba(230, 229, 239, 0.5)";
   context.fillRect(0, 0, canvas.width, canvas.height);
-  context.strokeStyle = "rgba(0, 0, 0, 0.18)";
+  context.strokeStyle = "rgba(0, 33, 59, 0.18)";
   context.lineWidth = 2;
   context.strokeRect(3, 3, canvas.width - 6, canvas.height - 6);
-  context.fillStyle = "#000000";
+  context.fillStyle = "#00213b";
   context.textBaseline = "middle";
   const maximumTextWidth = canvas.width - horizontalPadding * 2;
   lines.forEach((line, index) => {
