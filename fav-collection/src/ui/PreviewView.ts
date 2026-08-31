@@ -131,9 +131,11 @@ export function renderPreviewView(
       <section class="info-overlay preview-ui-layer" data-preview-ui data-info-overlay hidden role="dialog" aria-modal="true" aria-labelledby="info-title">
         <article class="info-card">
           <p class="preview-label">ABOUT THE WORK</p>
-          <h2 id="info-title">驚異の部屋-私のSNS コレクション- : SNS 投稿の展示空間上への再配置による鑑賞体験の考察</h2>
-          <p>Xで「いいね」した投稿を、個人的なコレクションとして壁面へ再配置する作品です。</p>
-          <p>画像は額装作品、動画は映像展示、テキストは言葉のパネルとして、タイムラインとは異なる距離から眺められます。</p>
+          <h2 id="info-title">驚異の部屋</h2>
+          <h2 id="info-title">-私のSNS コレクション-</h2>
+          <p>SNS 投稿の展示空間上への再配置による鑑賞体験の考察</p>
+          <p>作者が実際にXで「いいね」した投稿をX APIを用いて、取得・表示する。</p>
+          <p>デジタルコンテンツを物理媒体へ変換せず，デジタルの状態を保ったまま現実空間と対応する三次元空間に配置する</p>
           <button class="settings-button" type="button" data-action="close-info">作品説明を閉じる</button>
         </article>
       </section>

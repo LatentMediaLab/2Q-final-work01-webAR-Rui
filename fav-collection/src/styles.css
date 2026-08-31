@@ -1,10 +1,10 @@
 :root {
- --color-base:#00213b;
-  --color-base-rgb: 21 2 1; 
-  --color-accent: #cee2df;
-  --color-accent-rgb: 206 226 223;
-  --color-sub:#150201;
-  --color-sub-rgb: 0 33 59;
+ --color-base:#e6e5ef;
+  --color-base-rgb: 230 229 239; 
+  --color-accent: #00213b;
+  --color-accent-rgb: 0 33 59;
+  --color-sub:#ced7dc;
+  --color-sub-rgb: 206 215 220;
   color: var(--color-accent);
   background: var(--color-base);
   font-family:
