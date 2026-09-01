@@ -22,7 +22,6 @@ interface PreviewViewOptions {
   readonly onCloseSettings: () => void;
   readonly onOpenInfo: () => void;
   readonly onCloseInfo: () => void;
-  readonly onStopVideos: () => void;
   readonly onPlayingVideoChange?: (postId: string | null) => void;
   readonly onToggleCaptions: () => void;
   readonly onResetCamera: () => void;
@@ -122,7 +121,6 @@ export function renderPreviewView(
           <button class="icon-button" type="button" data-action="close-settings" aria-label="表示設定を閉じる">閉じる</button>
         </header>
         <div class="settings-actions">
-          <button class="settings-button" type="button" data-action="stop-videos">動画をすべて停止</button>
           <button class="settings-button" type="button" data-action="toggle-captions"></button>
           ${fourthSetting}
         </div>
@@ -267,7 +265,6 @@ class DomPreviewViewController implements PreviewViewController {
     this.bindButton("close-settings", options.onCloseSettings);
     this.bindButton("info", options.onOpenInfo);
     this.bindButton("close-info", options.onCloseInfo);
-    this.bindButton("stop-videos", options.onStopVideos);
     this.bindButton("toggle-captions", options.onToggleCaptions);
     this.bindOptionalButton("reset-camera", options.onResetCamera);
 
