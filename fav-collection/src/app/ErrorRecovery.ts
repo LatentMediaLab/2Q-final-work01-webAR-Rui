@@ -27,26 +27,26 @@ export function getRecoveryOptions(
           ? { action: "fallback", label: "簡易ARへ移行" }
           : null,
         { action: "preview", label: "通常プレビューへ移行" },
-        { action: "intro", label: "起動画面へ戻る" },
+        { action: "intro", label: "フィードへ戻る" },
       ]);
     case "camera-permission":
     case "camera-unavailable":
       return [
         { action: "retry", label: "カメラを再試行" },
         { action: "preview", label: "通常プレビューへ移行" },
-        { action: "intro", label: "起動画面へ戻る" },
+        { action: "intro", label: "フィードへ戻る" },
       ];
     case "data":
     case "empty-data":
       return [
         { action: "retry", label: "投稿データを再読み込み" },
-        { action: "intro", label: "起動画面へ戻る" },
+        { action: "intro", label: "フィードへ戻る" },
       ];
     case "webgl":
     case "exhibition":
       return [
         { action: "retry", label: "表示を再試行" },
-        { action: "intro", label: "起動画面へ戻る" },
+        { action: "intro", label: "フィードへ戻る" },
       ];
   }
 }

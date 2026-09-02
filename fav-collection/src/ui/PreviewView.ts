@@ -70,7 +70,7 @@ export function renderPreviewView(
       : `
           <button class="preview-control" type="button" data-action="info">作品説明</button>
           <button class="preview-control" type="button" data-action="settings">設定</button>
-          <button class="preview-control" type="button" data-action="back">最初の画面へ</button>`;
+          <button class="preview-control" type="button" data-action="back">フィードへ戻る</button>`;
   const fourthSetting = isAr
     ? '<button class="settings-button" type="button" data-action="reposition" disabled>展示を再配置</button>'
     : isFallback
@@ -132,7 +132,7 @@ export function renderPreviewView(
           <h2 id="info-title">驚異の部屋</br>-私のSNS コレクション-</h2>
           <p>SNS 投稿の展示空間上への再配置による鑑賞体験の考察</p>
           <p>作者が実際にXで「いいね」した投稿をX APIを用いて取得・表示する。</p>
-          <p>デジタルコンテンツを物理媒体へ変換せず、デジタルの状態を保ったまま現実空間と対応する三次元空間に配置する。</p>
+          <p>デジタルコンテンツを物理媒体へ変換せず、デジタルの状態を保ったまま現実空間と対応する三次元空間に配置することで、通常のSNS閲覧とは異なる体験を提供する。</p>
           <button class="settings-button" type="button" data-action="close-info">作品説明を閉じる</button>
         </article>
       </section>

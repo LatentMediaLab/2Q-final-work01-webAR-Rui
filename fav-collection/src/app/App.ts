@@ -302,7 +302,7 @@ export class App {
         this.showError(
           "exhibition",
           "このモードは未実装です",
-          "最初の画面に戻り、通常プレビューを選択してください。",
+          "フィードへ戻り、いいねした投稿を開いてください。",
         );
     }
   }
@@ -849,7 +849,7 @@ export class App {
     const error = this.state.error ?? {
       kind: "exhibition" as const,
       title: "エラーが発生しました",
-      message: "最初の画面に戻り、もう一度お試しください。",
+      message: "フィードへ戻り、もう一度お試しください。",
     };
 
     renderErrorView(this.root, {
