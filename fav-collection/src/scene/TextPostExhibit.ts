@@ -5,6 +5,7 @@ import type { ExhibitionLayoutItem } from "./ExhibitionLayout";
 import type { PostExhibit } from "./PostExhibit";
 import { disposeObject3D } from "./disposeObject3D";
 import { createSeededRandom, hashStringToSeed } from "../utils/seededRandom";
+import { TEXT_POST_CHARACTERS_PER_LINE } from "./ScrollingTextMetrics";
 
 export class TextPostExhibit implements PostExhibit {
   public readonly group = new THREE.Group();
@@ -14,6 +15,7 @@ export class TextPostExhibit implements PostExhibit {
   public constructor(
     post: PostRecord,
     layout: ExhibitionLayoutItem,
+    textCharactersPerLine = TEXT_POST_CHARACTERS_PER_LINE,
   ) {
     this.group.name = `text-post-${post.id}`;
     this.group.userData.postId = post.id;
@@ -47,7 +49,11 @@ export class TextPostExhibit implements PostExhibit {
     support.position.z = -layout.mountDepth / 2 - 0.003;
     this.group.add(support);
 
-    const texture = createTextPostTexture(post.authorName, post.text);
+    const texture = createTextPostTexture(
+      post.authorName,
+      post.text,
+      textCharactersPerLine,
+    );
     const panel = new THREE.Mesh(
       new THREE.PlaneGeometry(layout.contentWidth, layout.contentHeight),
       new THREE.MeshBasicMaterial({

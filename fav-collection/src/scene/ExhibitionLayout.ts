@@ -6,7 +6,10 @@ import {
   mapNormalizedViewToScale,
   normalizeViewCount,
 } from "../utils/viewCount";
-import { getTextPostMetrics } from "./ScrollingTextMetrics";
+import {
+  getTextPostMetrics,
+  TEXT_POST_CHARACTERS_PER_LINE,
+} from "./ScrollingTextMetrics";
 import { hasImagePostBody } from "./ImagePostBodyText";
 
 export interface LayoutRectangle {
@@ -88,6 +91,7 @@ export function isRectangleInsideExhibition(rectangle: LayoutRectangle): boolean
 
 export function createExhibitionLayout(
   posts: readonly PostRecord[],
+  textCharactersPerLine = TEXT_POST_CHARACTERS_PER_LINE,
 ): ExhibitionLayoutItem[] {
   if (posts.length === 0) {
     return [];
@@ -111,7 +115,10 @@ export function createExhibitionLayout(
     };
   });
 
-  const mixedLayouts = layoutMixedPosts(interleavePostTypes(rankedPosts));
+  const mixedLayouts = layoutMixedPosts(
+    interleavePostTypes(rankedPosts),
+    textCharactersPerLine,
+  );
   const layoutsByPostId = new Map(
     mixedLayouts.map((layout) => [layout.postId, layout]),
   );
@@ -173,6 +180,7 @@ function calculateMedian(values: readonly number[]): number {
 
 function layoutMixedPosts(
   posts: readonly RankedPost[],
+  textCharactersPerLine: number,
 ): ExhibitionLayoutItem[] {
   const occupied: LayoutRectangle[] = [];
   const layouts: ExhibitionLayoutItem[] = [];
@@ -183,6 +191,7 @@ function layoutMixedPosts(
       rankedPost.post,
       rankedPost.scale,
       seed,
+      textCharactersPerLine,
     );
     const random = createSeededRandom(seed);
     const candidate = findPlacement(
@@ -227,12 +236,17 @@ function getPostDimensions(
   post: PostRecord,
   scale: number,
   seed: number,
+  textCharactersPerLine: number,
 ): MutableDimensions {
   if (post.mediaType !== "text") {
     return getMediaDimensions(post, scale, seed);
   }
 
-  const metrics = getTextPostMetrics(post.authorName, post.text);
+  const metrics = getTextPostMetrics(
+    post.authorName,
+    post.text,
+    textCharactersPerLine,
+  );
   const textScale = APP_CONFIG.layout.textPostScale;
   return {
     width: metrics.width * textScale,

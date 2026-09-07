@@ -12,6 +12,9 @@
     "preview": "vite preview",
     "generate:placeholders": "node scripts/generate-placeholders.mjs",
     "generate:custom": "./generate-custom-posts.command",
+    "cloudflare:dev": "wrangler dev --config wrangler.jsonc --env staging --local",
+    "cloudflare:token:init": "node scripts/initialize-cloudflare-token.mjs",
+    "cloudflare:test": "vitest run tests/CloudflareWorker.test.ts",
     "test": "vitest run",
     "lint": "eslint .",
     "typecheck": "tsc -b --pretty false"
@@ -27,6 +30,7 @@
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.64.0",
     "vite": "^8.1.4",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "wrangler": "4.127.1"
   }
 }

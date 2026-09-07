@@ -11,12 +11,14 @@ export interface TextPostMetrics {
 export function createTextPostLines(
   authorName: string,
   text: string,
+  charactersPerLine = TEXT_POST_CHARACTERS_PER_LINE,
 ): string[] {
+  const safeCharactersPerLine = Math.max(1, Math.floor(charactersPerLine));
   const bodyLines = text
     .replaceAll("\r\n", "\n")
     .replaceAll("\r", "\n")
     .split("\n")
-    .flatMap(wrapTextLine);
+    .flatMap((line) => wrapTextLine(line, safeCharactersPerLine));
 
   return [authorName, ...bodyLines];
 }
@@ -24,8 +26,9 @@ export function createTextPostLines(
 export function getTextPostMetrics(
   authorName: string,
   text: string,
+  charactersPerLine = TEXT_POST_CHARACTERS_PER_LINE,
 ): TextPostMetrics {
-  const lines = createTextPostLines(authorName, text);
+  const lines = createTextPostLines(authorName, text, charactersPerLine);
   const longestLineUnits = Math.max(
     0,
     ...lines.map((line) => measureCharacterUnits(line)),
@@ -46,7 +49,7 @@ export function getTextPostMetrics(
   };
 }
 
-function wrapTextLine(line: string): string[] {
+function wrapTextLine(line: string, charactersPerLine: number): string[] {
   const characters = Array.from(line);
   if (characters.length === 0) {
     return [""];
@@ -56,11 +59,11 @@ function wrapTextLine(line: string): string[] {
   for (
     let index = 0;
     index < characters.length;
-    index += TEXT_POST_CHARACTERS_PER_LINE
+    index += charactersPerLine
   ) {
     lines.push(
       characters
-        .slice(index, index + TEXT_POST_CHARACTERS_PER_LINE)
+        .slice(index, index + charactersPerLine)
         .join(""),
     );
   }

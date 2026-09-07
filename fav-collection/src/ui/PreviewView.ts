@@ -29,9 +29,9 @@ interface PreviewViewOptions {
   readonly onExitAr?: () => void;
   readonly onReposition?: () => void;
   readonly onExitFallback?: () => void;
-  readonly onPlaceFallbackWall?: () => void;
+  readonly onStartFallbackViewing?: () => void;
   readonly onResetFallback?: () => void;
-  readonly onResetFallbackWall?: () => void;
+  readonly onResetFallbackViewing?: () => void;
   readonly onToggleFallbackAdjustment?: () => void;
 }
 
@@ -85,18 +85,18 @@ export function renderPreviewView(
     : "";
   const fallbackControls = isFallback
     ? `
-      <section class="fallback-controls preview-ui-layer" data-preview-ui data-fallback-controls aria-label="簡易ARの壁面設定">
-        <p data-fallback-instruction role="status" aria-live="polite">壁を正面に捉え、画面の枠を壁面へ合わせてください。</p>
+      <section class="fallback-controls preview-ui-layer" data-preview-ui data-fallback-controls aria-label="簡易ARの鑑賞方向設定">
+        <p data-fallback-instruction role="status" aria-live="polite">投稿群の中央にしたい方向へ端末を向けてください。</p>
         <div>
-          <button class="preview-control" type="button" data-action="place-fallback-wall">この壁面に展示する</button>
+          <button class="preview-control" type="button" data-action="start-fallback-viewing">この方向から鑑賞を始める</button>
           <button class="preview-control" type="button" data-action="toggle-fallback-adjustment" hidden>展示を調整</button>
           <button class="preview-control" type="button" data-action="reset-fallback" hidden>表示位置を戻す</button>
-          <button class="preview-control" type="button" data-action="reset-fallback-wall" hidden>壁面を設定し直す</button>
+          <button class="preview-control" type="button" data-action="reset-fallback-viewing" hidden>開始方向を設定し直す</button>
         </div>
       </section>
-      <div class="fallback-wall-target" data-fallback-wall-target aria-hidden="true">
+      <div class="fallback-view-target" data-fallback-view-target aria-hidden="true">
         <span></span><span></span><span></span><span></span>
-        <p>WALL AREA</p>
+        <p>VIEW CENTER</p>
       </div>`
     : "";
   container.innerHTML = `
@@ -149,7 +149,7 @@ export function renderPreviewView(
 
       ${arStatus}
       ${fallbackControls}
-      <p class="preview-help">${isAr ? "画面の案内に従って壁面へ配置してください" : isFallback ? "簡易ARは端末の向きと手動操作で壁面表示を近似します。正確な空間固定ではありません。" : "クリックまたはタップで投稿を選択・ドラッグで回転・ホイールまたはピンチで拡大縮小"}</p>
+      <p class="preview-help">${isAr ? "画面の案内に従って壁面へ配置してください" : isFallback ? "簡易ARは開始時の方向を中心に投稿を広げて表示します。正確な位置トラッキングではありません。" : "クリックまたはタップで投稿を選択・ドラッグで回転・ホイールまたはピンチで拡大縮小"}</p>
     </main>
   `;
 
@@ -180,11 +180,11 @@ class DomPreviewViewController implements PreviewViewController {
   private readonly repositionButton: HTMLButtonElement | null;
   private readonly fallbackInstruction: HTMLElement | null;
   private readonly fallbackControls: HTMLElement | null;
-  private readonly fallbackWallTarget: HTMLElement | null;
+  private readonly fallbackViewTarget: HTMLElement | null;
   private readonly fallbackPlaceButton: HTMLButtonElement | null;
   private readonly fallbackAdjustmentButton: HTMLButtonElement | null;
   private readonly fallbackResetButton: HTMLButtonElement | null;
-  private readonly fallbackResetWallButton: HTMLButtonElement | null;
+  private readonly fallbackResetViewingButton: HTMLButtonElement | null;
   private readonly postCount: HTMLElement;
   private readonly experience: "preview" | "ar" | "fallback";
   private readonly videoController = new ExclusiveVideoController();
@@ -232,9 +232,9 @@ class DomPreviewViewController implements PreviewViewController {
       "[data-fallback-instruction]",
     );
     this.fallbackControls = container.querySelector("[data-fallback-controls]");
-    this.fallbackWallTarget = container.querySelector("[data-fallback-wall-target]");
+    this.fallbackViewTarget = container.querySelector("[data-fallback-view-target]");
     this.fallbackPlaceButton = container.querySelector(
-      '[data-action="place-fallback-wall"]',
+      '[data-action="start-fallback-viewing"]',
     );
     this.fallbackAdjustmentButton = container.querySelector(
       '[data-action="toggle-fallback-adjustment"]',
@@ -242,19 +242,22 @@ class DomPreviewViewController implements PreviewViewController {
     this.fallbackResetButton = container.querySelector(
       '[data-action="reset-fallback"]',
     );
-    this.fallbackResetWallButton = container.querySelector(
-      '[data-action="reset-fallback-wall"]',
+    this.fallbackResetViewingButton = container.querySelector(
+      '[data-action="reset-fallback-viewing"]',
     );
 
     this.bindOptionalButton("back", options.onBack);
     this.bindOptionalButton("exit-ar", options.onExitAr);
     this.bindOptionalButton("reposition", options.onReposition);
     this.bindOptionalButton("exit-fallback", options.onExitFallback);
-    this.bindOptionalButton("place-fallback-wall", options.onPlaceFallbackWall);
+    this.bindOptionalButton(
+      "start-fallback-viewing",
+      options.onStartFallbackViewing,
+    );
     this.bindOptionalButton("reset-fallback", options.onResetFallback);
     this.bindOptionalButton(
-      "reset-fallback-wall",
-      options.onResetFallbackWall,
+      "reset-fallback-viewing",
+      options.onResetFallbackViewing,
     );
     this.bindOptionalButton(
       "toggle-fallback-adjustment",
@@ -305,7 +308,7 @@ class DomPreviewViewController implements PreviewViewController {
       this.fallbackPlaceButton === null ||
       this.fallbackAdjustmentButton === null ||
       this.fallbackResetButton === null ||
-      this.fallbackResetWallButton === null
+      this.fallbackResetViewingButton === null
     ) {
       return;
     }
@@ -315,7 +318,7 @@ class DomPreviewViewController implements PreviewViewController {
     this.fallbackPlaceButton.hidden = !aiming;
     this.fallbackPlaceButton.disabled = state === "placing";
     this.fallbackPlaceButton.textContent =
-      state === "placing" ? "壁面を設定中…" : "この壁面に展示する";
+      state === "placing" ? "開始方向を記録中…" : "この方向から鑑賞を始める";
     this.fallbackAdjustmentButton.hidden = aiming;
     this.fallbackAdjustmentButton.textContent = adjusting
       ? "調整を完了"
@@ -325,23 +328,23 @@ class DomPreviewViewController implements PreviewViewController {
       String(adjusting),
     );
     this.fallbackResetButton.hidden = !adjusting;
-    this.fallbackResetWallButton.hidden = aiming;
-    if (this.fallbackWallTarget !== null) {
-      this.fallbackWallTarget.hidden = !aiming;
+    this.fallbackResetViewingButton.hidden = aiming;
+    if (this.fallbackViewTarget !== null) {
+      this.fallbackViewTarget.hidden = !aiming;
     }
 
     if (state === "aiming") {
       this.fallbackInstruction.textContent =
-        "壁を正面に捉え、画面の枠を壁面へ合わせてください。";
+        "投稿群の中央にしたい方向へ端末を向けてください。";
     } else if (state === "placing") {
-      this.fallbackInstruction.textContent = "壁面の向きを記録しています。";
+      this.fallbackInstruction.textContent = "鑑賞開始時の向きを記録しています。";
     } else if (state === "adjusting") {
       this.fallbackInstruction.textContent =
         "一本指で移動、二本指で拡大・回転できます。";
     } else {
       this.fallbackInstruction.textContent =
         trackingMode === "orientation"
-          ? "壁面を基準に表示中です。端末の向きを変えて一部ずつ鑑賞してください。"
+          ? "開始時の方向を基準に表示中です。端末を上下左右へ向けて鑑賞してください。"
           : "姿勢センサーを利用できないため、展示を調整して見える範囲を移動してください。";
     }
   }
@@ -385,8 +388,8 @@ class DomPreviewViewController implements PreviewViewController {
     if (this.fallbackControls !== null) {
       this.fallbackControls.hidden = true;
     }
-    if (this.fallbackWallTarget !== null) {
-      this.fallbackWallTarget.hidden = true;
+    if (this.fallbackViewTarget !== null) {
+      this.fallbackViewTarget.hidden = true;
     }
     this.closeDetailButton.focus();
   }

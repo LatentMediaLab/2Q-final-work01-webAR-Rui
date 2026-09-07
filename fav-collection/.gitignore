@@ -15,6 +15,10 @@ coverage/
 
 # Local deployment-tool state
 .netlify/
+.wrangler/
+wrangler.jsonc
+.dev.vars
+.dev.vars.*
 
 # Environment files
 .env
@@ -40,6 +44,7 @@ Thumbs.db
 
 # Private/custom post assets and generated data
 /public/assets/posts/custom/
+/public/data/posts.custom
 /public/data/posts.custom.json
 
 # Other

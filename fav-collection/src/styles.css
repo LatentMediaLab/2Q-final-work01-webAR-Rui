@@ -1129,7 +1129,7 @@ button {
   margin-top: 0.65rem;
 }
 
-.fallback-wall-target {
+.fallback-view-target {
   position: absolute;
   z-index: 10;
   top: 18%;
@@ -1139,42 +1139,42 @@ button {
   pointer-events: none;
 }
 
-.fallback-wall-target span {
+.fallback-view-target span {
   position: absolute;
   width: 3rem;
   height: 3rem;
   border-color: rgb(var(--color-accent-rgb) / 88%);
 }
 
-.fallback-wall-target span:nth-child(1) {
+.fallback-view-target span:nth-child(1) {
   top: 0;
   left: 0;
   border-top: 2px solid;
   border-left: 2px solid;
 }
 
-.fallback-wall-target span:nth-child(2) {
+.fallback-view-target span:nth-child(2) {
   top: 0;
   right: 0;
   border-top: 2px solid;
   border-right: 2px solid;
 }
 
-.fallback-wall-target span:nth-child(3) {
+.fallback-view-target span:nth-child(3) {
   bottom: 0;
   left: 0;
   border-bottom: 2px solid;
   border-left: 2px solid;
 }
 
-.fallback-wall-target span:nth-child(4) {
+.fallback-view-target span:nth-child(4) {
   right: 0;
   bottom: 0;
   border-right: 2px solid;
   border-bottom: 2px solid;
 }
 
-.fallback-wall-target p {
+.fallback-view-target p {
   position: absolute;
   top: 50%;
   left: 50%;

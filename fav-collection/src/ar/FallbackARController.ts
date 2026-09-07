@@ -8,6 +8,7 @@ import {
   shouldUseAntialias,
 } from "../scene/rendererPerformance";
 import { requestRearCamera, stopMediaStream } from "./CameraAccess";
+import { createFallbackDomeLayout } from "./FallbackDomeLayout";
 import {
   createDeviceOrientationQuaternion,
   createRelativeDeviceOrientation,
@@ -50,7 +51,9 @@ export class FallbackARController {
   private readonly camera: THREE.PerspectiveCamera;
   private readonly renderer: THREE.WebGLRenderer;
   private readonly video: HTMLVideoElement;
-  private readonly exhibition = new Exhibition();
+  private readonly exhibition = new Exhibition({
+    textCharactersPerLine: APP_CONFIG.fallback.layout.textCharactersPerLine,
+  });
   private readonly exhibitionRoot = new THREE.Group();
   private readonly postRaycaster = new PostRaycaster();
   private readonly pointers = new Map<number, GesturePoint>();
@@ -61,7 +64,7 @@ export class FallbackARController {
   private orientationAccess: DeviceOrientationAccess | null = null;
   private orientationReference: THREE.Quaternion | null = null;
   private orientationListening = false;
-  private wallPlaced = false;
+  private exhibitionPlaced = false;
   private locked = false;
   private interactionEnabled = true;
   private disposed = false;
@@ -101,7 +104,7 @@ export class FallbackARController {
     this.renderer.domElement.tabIndex = 0;
     this.renderer.domElement.setAttribute(
       "aria-label",
-      "背面カメラ上の簡易AR展示。壁面を手動設定すると端末の向きに応じて展示の見える範囲が変化します。Enterキーで投稿を選択できます。",
+      "背面カメラ上の簡易AR展示。鑑賞開始時の方向を中心に、端末を上下左右へ向けて投稿を鑑賞できます。Enterキーで投稿を選択できます。",
     );
     this.container.append(this.renderer.domElement);
 
@@ -140,6 +143,9 @@ export class FallbackARController {
       return;
     }
     await this.exhibition.load(posts);
+    if (this.exhibitionPlaced) {
+      this.applyDomeLayout();
+    }
   }
 
   public setCaptionsVisible(visible: boolean): void {
@@ -155,8 +161,8 @@ export class FallbackARController {
     }
   }
 
-  public async placeOnWall(): Promise<void> {
-    if (this.disposed || this.wallPlaced) {
+  public async startViewing(): Promise<void> {
+    if (this.disposed || this.exhibitionPlaced) {
       return;
     }
 
@@ -172,18 +178,19 @@ export class FallbackARController {
       this.orientationListening = true;
     }
 
-    this.wallPlaced = true;
+    this.exhibitionPlaced = true;
     this.locked = true;
     this.orientationReference = null;
     this.camera.quaternion.identity();
     this.transform = DEFAULT_FALLBACK_TRANSFORM;
+    this.applyDomeLayout();
     this.applyTransform();
     this.exhibitionRoot.visible = true;
     this.options.onPlacementStateChange("placed", this.getTrackingMode());
   }
 
   public toggleAdjustment(): void {
-    if (!this.wallPlaced) {
+    if (!this.exhibitionPlaced) {
       return;
     }
     this.locked = !this.locked;
@@ -204,8 +211,8 @@ export class FallbackARController {
     this.applyTransform();
   }
 
-  public resetWall(): void {
-    this.wallPlaced = false;
+  public resetViewingDirection(): void {
+    this.exhibitionPlaced = false;
     this.locked = false;
     this.orientationReference = null;
     this.camera.quaternion.identity();
@@ -255,7 +262,7 @@ export class FallbackARController {
   };
 
   private readonly handlePointerDown = (event: PointerEvent): void => {
-    if (!this.interactionEnabled || !this.wallPlaced) {
+    if (!this.interactionEnabled || !this.exhibitionPlaced) {
       return;
     }
     if (event.pointerType === "mouse" && event.button !== 0) {
@@ -279,7 +286,7 @@ export class FallbackARController {
   };
 
   private readonly handlePointerMove = (event: PointerEvent): void => {
-    if (!this.interactionEnabled || !this.wallPlaced) {
+    if (!this.interactionEnabled || !this.exhibitionPlaced) {
       return;
     }
     if (!this.pointers.has(event.pointerId)) {
@@ -304,7 +311,7 @@ export class FallbackARController {
   };
 
   private readonly handlePointerUp = (event: PointerEvent): void => {
-    if (!this.interactionEnabled || !this.wallPlaced) {
+    if (!this.interactionEnabled || !this.exhibitionPlaced) {
       return;
     }
     const selectionStart = this.selectionStart;
@@ -346,7 +353,7 @@ export class FallbackARController {
   private readonly handleKeyDown = (event: KeyboardEvent): void => {
     if (
       !this.interactionEnabled ||
-      !this.wallPlaced ||
+      !this.exhibitionPlaced ||
       !this.locked ||
       (event.key !== "Enter" && event.key !== " ")
     ) {
@@ -376,11 +383,37 @@ export class FallbackARController {
     this.exhibitionRoot.rotation.set(0, 0, this.transform.rotation);
   }
 
+  private applyDomeLayout(): void {
+    this.camera.updateMatrixWorld();
+    const objects = this.exhibition.getSelectableObjects();
+    const poses = createFallbackDomeLayout(
+      objects.map((object, index) => {
+        const postId = object.userData.postId;
+        return typeof postId === "string" ? postId : String(index);
+      }),
+      this.camera.getWorldPosition(new THREE.Vector3()),
+      this.camera.getWorldQuaternion(new THREE.Quaternion()),
+      APP_CONFIG.fallback.layout,
+    );
+    objects.forEach((object, index) => {
+      const pose = poses[index];
+      if (pose === undefined) {
+        return;
+      }
+      object.position.copy(pose.position);
+      object.quaternion.copy(pose.quaternion);
+      const mediaScale = object.name.startsWith("image-post-")
+        ? APP_CONFIG.fallback.layout.imageScaleMultiplier
+        : 1;
+      object.scale.setScalar(pose.scale * mediaScale);
+    });
+  }
+
   private readonly handleDeviceOrientation = (
     event: DeviceOrientationEvent,
   ): void => {
     if (
-      !this.wallPlaced ||
+      !this.exhibitionPlaced ||
       event.alpha === null ||
       event.beta === null ||
       event.gamma === null
@@ -392,7 +425,10 @@ export class FallbackARController {
       alpha: event.alpha,
       beta: event.beta,
       gamma: event.gamma,
-      screenAngle: window.screen.orientation?.angle ?? 0,
+      screenAngle:
+        typeof window.orientation === "number"
+          ? window.orientation
+          : (window.screen.orientation?.angle ?? 0),
     });
     if (this.orientationReference === null) {
       this.orientationReference = current;

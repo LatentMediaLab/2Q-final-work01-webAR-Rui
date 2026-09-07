@@ -698,9 +698,11 @@ export class App {
         this.fallbackView?.stopAllVideos();
         this.showIntro();
       },
-      onPlaceFallbackWall: () => void this.fallbackController?.placeOnWall(),
+      onStartFallbackViewing: () =>
+        void this.fallbackController?.startViewing(),
       onResetFallback: () => this.fallbackController?.resetAdjustment(),
-      onResetFallbackWall: () => this.fallbackController?.resetWall(),
+      onResetFallbackViewing: () =>
+        this.fallbackController?.resetViewingDirection(),
       onToggleFallbackAdjustment: () =>
         this.fallbackController?.toggleAdjustment(),
     });

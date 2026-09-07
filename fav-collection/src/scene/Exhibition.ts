@@ -7,6 +7,11 @@ import type { PostExhibit } from "./PostExhibit";
 import { TextPostExhibit } from "./TextPostExhibit";
 import { VideoPostExhibit } from "./VideoPostExhibit";
 import { runWithConcurrency } from "../utils/runWithConcurrency";
+import { TEXT_POST_CHARACTERS_PER_LINE } from "./ScrollingTextMetrics";
+
+interface ExhibitionOptions {
+  readonly textCharactersPerLine?: number;
+}
 
 export class Exhibition {
   public readonly group = new THREE.Group();
@@ -16,8 +21,16 @@ export class Exhibition {
   private disposed = false;
   private captionsVisible = true;
 
-  public constructor() {
+  private readonly textCharactersPerLine: number;
+
+  public constructor(options: ExhibitionOptions = {}) {
     this.group.name = "exhibition";
+    this.textCharactersPerLine = Math.max(
+      1,
+      Math.floor(
+        options.textCharactersPerLine ?? TEXT_POST_CHARACTERS_PER_LINE,
+      ),
+    );
   }
 
   public async load(posts: readonly PostRecord[]): Promise<void> {
@@ -30,7 +43,10 @@ export class Exhibition {
     this.clearObjects();
 
     const displayPosts = limitExhibitionPosts(posts);
-    const layouts = createExhibitionLayout(displayPosts);
+    const layouts = createExhibitionLayout(
+      displayPosts,
+      this.textCharactersPerLine,
+    );
     const postsById = new Map(displayPosts.map((post) => [post.id, post]));
 
     for (const layout of layouts) {
@@ -39,7 +55,11 @@ export class Exhibition {
         continue;
       }
 
-      const object = createPostExhibit(post, layout);
+      const object = createPostExhibit(
+        post,
+        layout,
+        this.textCharactersPerLine,
+      );
       object.setCaptionsVisible(this.captionsVisible);
       this.objects.push(object);
       this.group.add(object.group);
@@ -103,6 +123,7 @@ export function limitExhibitionPosts(
 function createPostExhibit(
   post: PostRecord,
   layout: ReturnType<typeof createExhibitionLayout>[number],
+  textCharactersPerLine: number,
 ): PostExhibit {
   switch (post.mediaType) {
     case "image":
@@ -110,6 +131,6 @@ function createPostExhibit(
     case "video":
       return new VideoPostExhibit(post, layout);
     case "text":
-      return new TextPostExhibit(post, layout);
+      return new TextPostExhibit(post, layout, textCharactersPerLine);
   }
 }

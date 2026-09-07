@@ -6,17 +6,17 @@ import {
 } from "../src/app/readDisplayPostCount";
 
 describe("readDisplayPostCount", () => {
-  it.each([10, 20, 35, 40, 50] as const)(
+  it.each([10, 20, 35, 40, 45, 50] as const)(
     "accepts the supported count %i",
     (count) => {
       expect(readDisplayPostCount(`?count=${count}`)).toBe(count);
     },
   );
 
-  it("uses 35 when the parameter is absent or unsupported", () => {
-    expect(readDisplayPostCount("")).toBe(35);
-    expect(readDisplayPostCount("?count=30")).toBe(35);
-    expect(readDisplayPostCount("?count=invalid")).toBe(35);
+  it("uses 45 when the parameter is absent or unsupported", () => {
+    expect(readDisplayPostCount("")).toBe(45);
+    expect(readDisplayPostCount("?count=30")).toBe(45);
+    expect(readDisplayPostCount("?count=invalid")).toBe(45);
   });
 
   it("selects only the requested number without changing the source", () => {

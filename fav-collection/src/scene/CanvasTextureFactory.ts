@@ -3,7 +3,10 @@ import {
   createImagePostBodyLines,
   IMAGE_POST_BODY_MAX_LINES,
 } from "./ImagePostBodyText";
-import { createTextPostLines } from "./ScrollingTextMetrics";
+import {
+  createTextPostLines,
+  TEXT_POST_CHARACTERS_PER_LINE,
+} from "./ScrollingTextMetrics";
 
 const FONT_FAMILY =
   '"Hiragino Sans", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif';
@@ -110,8 +113,9 @@ export function createImagePostBodyTexture(text: string): THREE.CanvasTexture {
 export function createTextPostTexture(
   authorName: string,
   text: string,
+  charactersPerLine = TEXT_POST_CHARACTERS_PER_LINE,
 ): THREE.CanvasTexture {
-  const lines = createTextPostLines(authorName, text);
+  const lines = createTextPostLines(authorName, text, charactersPerLine);
   const canvas = document.createElement("canvas");
   const measuringContext = getContext(canvas);
   const authorFontSize = 28;
